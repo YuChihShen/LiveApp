@@ -19,6 +19,8 @@
 		4B5355C427FAC1F1003B31FD /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5355B927FAC1F1003B31FD /* Room.swift */; };
 		4B5355C627FAC1F1003B31FD /* LiveCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5355BB27FAC1F1003B31FD /* LiveCollectionViewController.swift */; };
 		4B5355C927FAC259003B31FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B5355C727FAC259003B31FD /* Main.storyboard */; };
+		4B5355D127FC270E003B31FD /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5355D027FC270E003B31FD /* CustomLabel.swift */; };
+		4B5355D327FC9236003B31FD /* SetHeadPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5355D227FC9236003B31FD /* SetHeadPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		4B5355B927FAC1F1003B31FD /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		4B5355BB27FAC1F1003B31FD /* LiveCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveCollectionViewController.swift; sourceTree = "<group>"; };
 		4B5355C827FAC259003B31FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4B5355D027FC270E003B31FD /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		4B5355D227FC9236003B31FD /* SetHeadPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHeadPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +75,9 @@
 				4B53559D27FAC14B003B31FD /* AppDelegate.swift */,
 				4B53559F27FAC14B003B31FD /* SceneDelegate.swift */,
 				4B5355CA27FAF892003B31FD /* Home */,
-				4B5355B427FAC1F1003B31FD /* RegisterViewController.swift */,
-				4B5355B627FAC1F1003B31FD /* LogInViewController.swift */,
+				4B5355D427FC92B0003B31FD /* Info */,
 				4B5355B527FAC1F1003B31FD /* SearchViewController.swift */,
+				4B5355CD27FC24C1003B31FD /* Model */,
 				4B5355C727FAC259003B31FD /* Main.storyboard */,
 				4B5355A827FAC14D003B31FD /* LaunchScreen.storyboard */,
 				4B5355A627FAC14D003B31FD /* Assets.xcassets */,
@@ -88,9 +92,27 @@
 			children = (
 				4B5355B827FAC1F1003B31FD /* LiveCollectionViewCell.swift */,
 				4B5355BB27FAC1F1003B31FD /* LiveCollectionViewController.swift */,
-				4B5355B927FAC1F1003B31FD /* Room.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4B5355CD27FC24C1003B31FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B5355B927FAC1F1003B31FD /* Room.swift */,
+				4B5355D027FC270E003B31FD /* CustomLabel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B5355D427FC92B0003B31FD /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4B5355B427FAC1F1003B31FD /* RegisterViewController.swift */,
+				4B5355D227FC9236003B31FD /* SetHeadPhotoViewController.swift */,
+				4B5355B627FAC1F1003B31FD /* LogInViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +188,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B5355C027FAC1F1003B31FD /* SearchViewController.swift in Sources */,
+				4B5355D127FC270E003B31FD /* CustomLabel.swift in Sources */,
+				4B5355D327FC9236003B31FD /* SetHeadPhotoViewController.swift in Sources */,
 				4B5355BF27FAC1F1003B31FD /* RegisterViewController.swift in Sources */,
 				4B5355C127FAC1F1003B31FD /* LogInViewController.swift in Sources */,
 				4B53559E27FAC14B003B31FD /* AppDelegate.swift in Sources */,

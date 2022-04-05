@@ -31,12 +31,12 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         // AccountLabel 外觀設定
         AccountLabel.layer.borderWidth = AccountLabel.bounds.height * 0.03
         AccountLabel.layer.borderColor = BorderColor
-        AccountLabel.layer.cornerRadius = AccountLabel.bounds.midY * 0.9
+        AccountLabel.layer.cornerRadius = AccountLabel.bounds.midY
         
         // PasswordLabel 外觀設定
         PasswordLabel.layer.borderWidth = PasswordLabel.bounds.height * 0.03
         PasswordLabel.layer.borderColor = BorderColor
-        PasswordLabel.layer.cornerRadius = PasswordLabel.bounds.midY * 0.9
+        PasswordLabel.layer.cornerRadius = PasswordLabel.bounds.midY 
         
         // LoginButton 外觀設定
         LogInButton.layer.backgroundColor = UIColor.black.cgColor
