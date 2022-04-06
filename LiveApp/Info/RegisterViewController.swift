@@ -10,8 +10,8 @@ import UIKit
 class RegisterViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var picPersonal: UIImageView!
-    @IBOutlet weak var btnEdit: UIImageView!
     @IBOutlet weak var PhotoEditButton: UIButton!
+    @IBOutlet weak var picPhotoEdit: UIImageView!
     
     @IBOutlet weak var CheckPasswordLebel: UILabel!
     @IBOutlet weak var PasswordLabel: UILabel!
@@ -20,7 +20,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var NickName: UITextField!
     @IBOutlet weak var Account: UITextField!
     @IBOutlet weak var Password: UITextField!
-    @IBOutlet weak var CheckPassword: UITextField!
     
     @IBOutlet weak var Sent: UIButton!
     
@@ -35,27 +34,33 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         NickNameLabel.text = "暱稱"
         AccountLabel.text = "帳號"
         PasswordLabel.text = "密碼"
-        CheckPasswordLebel.text = "確認密碼"
+
         
         Sent.setTitle("送出", for: .normal)
         Sent.layer.cornerRadius = Sent.bounds.midY
+        
+        PhotoEditButton.setTitle("", for: .normal)
         
         // NickNameLabel 外觀設定
         NickNameLabel.layer.borderWidth = NickNameLabel.bounds.height * 0.03
         NickNameLabel.layer.borderColor = BorderColor
         NickNameLabel.layer.cornerRadius = NickNameLabel.bounds.midY
+        
         // AccountLabel 外觀設定
         AccountLabel.layer.borderWidth = AccountLabel.bounds.height * 0.03
         AccountLabel.layer.borderColor = BorderColor
         AccountLabel.layer.cornerRadius = AccountLabel.bounds.midY
+        
         // PasswordLabel 外觀設定
         PasswordLabel.layer.borderWidth = PasswordLabel.bounds.height * 0.03
         PasswordLabel.layer.borderColor = BorderColor
         PasswordLabel.layer.cornerRadius = PasswordLabel.bounds.midY
+        
         // CheckPasswordLebel 外觀設定
-        CheckPasswordLebel.layer.borderWidth = CheckPasswordLebel.bounds.height * 0.03
-        CheckPasswordLebel.layer.borderColor = BorderColor
-        CheckPasswordLebel.layer.cornerRadius = CheckPasswordLebel.bounds.midY
+//        CheckPasswordLebel.text = "確認密碼"
+//        CheckPasswordLebel.layer.borderWidth = CheckPasswordLebel.bounds.height * 0.03
+//        CheckPasswordLebel.layer.borderColor = BorderColor
+//        CheckPasswordLebel.layer.cornerRadius = CheckPasswordLebel.bounds.midY
         
         
     }
@@ -68,7 +73,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if Account.isFirstResponder {AccountLabel.layer.borderColor = FocusBorderColor}
         if Password.isFirstResponder{PasswordLabel.layer.borderColor = FocusBorderColor}
-        if CheckPassword.isFirstResponder{CheckPasswordLebel.layer.borderColor = FocusBorderColor}
+//        if CheckPassword.isFirstResponder{CheckPasswordLebel.layer.borderColor = FocusBorderColor}
         if NickName.isFirstResponder{NickNameLabel.layer.borderColor = FocusBorderColor}
 
     }
@@ -76,7 +81,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         AccountLabel.layer.borderColor = BorderColor
         PasswordLabel.layer.borderColor = BorderColor
         NickNameLabel.layer.borderColor = BorderColor
-        CheckPasswordLebel.layer.borderColor = BorderColor
+//        CheckPasswordLebel.layer.borderColor = BorderColor
     }
 
 }
