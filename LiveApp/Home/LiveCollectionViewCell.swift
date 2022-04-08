@@ -15,6 +15,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     var roomResult = try? JSONDecoder().decode(Rooms.self, from: data)
     var listNum : Int = -1
+    
     func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data,
@@ -29,7 +30,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     
     func update() {
-        LiveView.image = UIImage(systemName: "questionmark.circle")
+        LiveView.image = UIImage(named: "paopao")
         LiveView.clipsToBounds = true
         LiveView.layer.cornerRadius = 20
         let PeopleCountText = NSMutableAttributedString()
@@ -37,6 +38,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         let PeopleCountNum = NumberFormatter.localizedString(
             from: NSNumber(value: roomResult?.stream_list[listNum].online_num ?? 0), number: .decimal)
         PeopleCountAtt.image = UIImage(named:"iconPersonal")
+        
         PeopleCountAtt.bounds = CGRect(x: (PeopleCount.bounds.width) / 40,
                                        y: (PeopleCount.bounds.width) / -60,
                                        width: (PeopleCount.bounds.width) / 5.5 ,
