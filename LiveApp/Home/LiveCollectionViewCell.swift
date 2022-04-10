@@ -13,15 +13,14 @@ class LiveCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var PeopleCount: UILabel!
     @IBOutlet weak var NickName: UILabel!
     
-    var roomResult = try? JSONDecoder().decode(Rooms.self, from: data)
-    var listNum : Int = -1
+    var peoPlecount = 0
+    var urlString = ""
     
     func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data,
                let image = UIImage(data: data) {
                 completion(image)
-                
             } else {
                 completion(nil)
             }
@@ -36,7 +35,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
         let PeopleCountText = NSMutableAttributedString()
         let PeopleCountAtt = NSTextAttachment()
         let PeopleCountNum = NumberFormatter.localizedString(
-            from: NSNumber(value: roomResult?.stream_list[listNum].online_num ?? 0), number: .decimal)
+            from: NSNumber(value: peoPlecount), number: .decimal)
         PeopleCountAtt.image = UIImage(named:"iconPersonal")
         
         PeopleCountAtt.bounds = CGRect(x: (PeopleCount.bounds.width) / 40,
@@ -46,14 +45,12 @@ class LiveCollectionViewCell: UICollectionViewCell {
        
         PeopleCountText.append(NSAttributedString(attachment: PeopleCountAtt))
         PeopleCountText.append(NSAttributedString(string: " "))
-        PeopleCountText.append(NSAttributedString(string:
-                                                    String(PeopleCountNum)))
+        PeopleCountText.append(NSAttributedString(string: String(PeopleCountNum)))
         
         PeopleCount.attributedText = PeopleCountText
-        PeopleCount.layer.cornerRadius = PeopleCount.bounds.height / 2
-       
-        NickName.text = String(roomResult?.stream_list[listNum].nickname ?? "")
-        fetchImage(url: URL(string: roomResult?.stream_list[listNum].head_photo ?? "")!) { image in
+        PeopleCount.layer.cornerRadius = PeopleCount.bounds.midY
+        
+        fetchImage(url: URL(string: urlString)!) { image in
             guard let image = image else { return }
             DispatchQueue.main.async {
                 self.LiveView.image = image

@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 import FirebaseStorage
 import RxSwift
+import RxCocoa
 
 class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
@@ -28,6 +29,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
     let BorderColor = UIColor.lightGray.cgColor
     let FocusBorderColor = UIColor.darkGray.cgColor
     let imagePicker = UIImagePickerController()
+    let disposeBag = DisposeBag()
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -39,7 +41,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
         if Account.isFirstResponder {AccountLabel.layer.borderColor = FocusBorderColor}
         if Password.isFirstResponder{PasswordLabel.layer.borderColor = FocusBorderColor}
         if NickName.isFirstResponder{NickNameLabel.layer.borderColor = FocusBorderColor}
-
+        // 避免 strong password
+        Password.rx.text.orEmpty.asObservable().subscribe(onNext: {
+            if $0.count > 0{self.Password.isSecureTextEntry = true}
+        }).disposed(by: disposeBag)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         AccountLabel.layer.borderColor = BorderColor
@@ -80,7 +85,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
         if Auth.auth().currentUser != nil {
                do {
                    try Auth.auth().signOut()
-                   self.navigationController?.popToRootViewController(animated: true)
                } catch let error as NSError {
                    print(error.localizedDescription)
                }
@@ -126,30 +130,20 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
     
     // 註冊
     @IBAction func Register(_ sender: Any) {
-       
-        let storage = Storage.storage()
-        let HeadPhotoRef = storage.reference().child(self.Account.text ?? "")
+        let HeadPhotoRef = Storage.storage().reference().child(self.Account.text ?? "")
         let imageData = picPersonal.image?.jpegData(compressionQuality: 0.8)
-        
-        Auth.auth().createUser(
-            withEmail: self.Account.text ?? "", password: self.Password.text ?? "", completion: { (user,error) in
+        Auth.auth().createUser(withEmail: self.Account.text ?? "", password: self.Password.text ?? "", completion: { (user,error) in
                 if error == nil {
-                    let uploadTask = HeadPhotoRef.putData(imageData!)
-                    uploadTask.observe(.success){(snapshot) in
-                        HeadPhotoRef.downloadURL{(url,error) in if
-                            let error = error {print("獲取圖片下載網址出現錯誤： ",error.localizedDescription)}
-                            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                            changeRequest?.photoURL = url
-                            changeRequest?.displayName = self.NickName.text ?? ""
-                            changeRequest?.commitChanges()
-                        }
-                    }
-                    self.navigationController?.popToRootViewController(animated: true)
+                    HeadPhotoRef.putData(imageData!)
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    changeRequest?.displayName = self.NickName.text ?? ""
+                    changeRequest?.commitChanges()
+                    self.navigationController?.popToRootViewController(animated: false)
                 }else{
                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                    self.present(alert, animated: true, completion: nil)
-               }
-            })
+                }
+        })
     }
 }

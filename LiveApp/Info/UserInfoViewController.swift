@@ -21,6 +21,7 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
     let imagePicker = UIImagePickerController()
     let user = Auth.auth().currentUser
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -32,7 +33,9 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
         NickNameLabel.text = "暱稱: \(user?.displayName ?? "")"
         TapButton.setTitle("", for: .normal)
         LogOutButton.setTitle("登出", for: .normal)
+        // 取得頭貼 URL
         let HeadPhotoRef = Storage.storage().reference().child(user?.email ?? "")
+        // 下載頭貼
         HeadPhotoRef.getData(maxSize: 2 * 1024 * 1024){(data,error)in
             if let error = error{
                 print(error.localizedDescription)
@@ -40,9 +43,6 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
                 self.UserHeadPic.image = UIImage(data: data!)
             }
         }
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        
     }
     
    
@@ -68,17 +68,10 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
         if let pickerImage = info[.originalImage] as? UIImage {
             self.UserHeadPic.image = pickerImage
         }
+        // 上傳頭貼
         let SaveRef = Storage.storage().reference().child(user?.email ?? "")
-        let ImageData = self.UserHeadPic.image?.jpegData(compressionQuality: 0.6)
-        let uploadTask = SaveRef.putData(ImageData!)
-        uploadTask.observe(.success){(snapshot) in
-            SaveRef.downloadURL{(url,error) in if
-                let error = error {print("獲取圖片下載網址出現錯誤： ",error.localizedDescription)}
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                changeRequest?.photoURL = url
-                changeRequest?.commitChanges()
-            }
-        }
+        let ImageData = self.UserHeadPic.image?.jpegData(compressionQuality: 0.6)       
+        SaveRef.putData(ImageData!)
         picker.dismiss(animated: true)
     }
     // 開啟相機
@@ -91,11 +84,12 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
         imagePicker.sourceType = .savedPhotosAlbum
         self.present(imagePicker, animated: true)
     }
+    // 登出
     @IBAction func LogOut(_ sender: Any) {
         if Auth.auth().currentUser != nil {
                do {
                    try Auth.auth().signOut()
-                   self.navigationController?.popToRootViewController(animated: true)
+                   self.navigationController?.viewDidLoad()
                } catch let error as NSError {
                    print(error.localizedDescription)
                }

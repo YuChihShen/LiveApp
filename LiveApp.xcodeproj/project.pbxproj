@@ -29,6 +29,8 @@
 		4BC27B1127FFC83E000906DA /* slice in Resources */ = {isa = PBXBuildFile; fileRef = 4BC27B1027FFC83E000906DA /* slice */; };
 		4BC27B1427FFDB8A000906DA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC27B1327FFDB8A000906DA /* FirebaseDatabase */; };
 		4BC27B1627FFDC17000906DA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC27B1527FFDC17000906DA /* FirebaseStorage */; };
+		4BC27B3A2801A123000906DA /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC27B392801A123000906DA /* HeaderCollectionReusableView.swift */; };
+		4BC27B3C2801ECB9000906DA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC27B3B2801ECB9000906DA /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		4BC27B0827FE8C34000906DA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4BC27B0C27FED005000906DA /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		4BC27B1027FFC83E000906DA /* slice */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slice; sourceTree = "<group>"; };
+		4BC27B392801A123000906DA /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		4BC27B3B2801ECB9000906DA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +96,10 @@
 				4BC27AFE27FD4A21000906DA /* Delegate */,
 				4B5355CA27FAF892003B31FD /* Home */,
 				4B5355D427FC92B0003B31FD /* Info */,
-				4B5355B527FAC1F1003B31FD /* SearchViewController.swift */,
 				4B5355CD27FC24C1003B31FD /* Model */,
 				4B5355C727FAC259003B31FD /* Main.storyboard */,
 				4B5355A827FAC14D003B31FD /* LaunchScreen.storyboard */,
+				4B5355B527FAC1F1003B31FD /* SearchViewController.swift */,
 				4B5355A627FAC14D003B31FD /* Assets.xcassets */,
 				4B5355AB27FAC14D003B31FD /* Info.plist */,
 				4BC27AF527FD4238000906DA /* GoogleService-Info.plist */,
@@ -107,8 +111,9 @@
 		4B5355CA27FAF892003B31FD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4B5355B827FAC1F1003B31FD /* LiveCollectionViewCell.swift */,
 				4B5355BB27FAC1F1003B31FD /* LiveCollectionViewController.swift */,
+				4B5355B827FAC1F1003B31FD /* LiveCollectionViewCell.swift */,
+				4BC27B392801A123000906DA /* HeaderCollectionReusableView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -125,8 +130,9 @@
 		4B5355D427FC92B0003B31FD /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				4B5355B627FAC1F1003B31FD /* LogInViewController.swift */,
+				4BC27B3B2801ECB9000906DA /* NavigationController.swift */,
 				4B5355B427FAC1F1003B31FD /* RegisterViewController.swift */,
+				4B5355B627FAC1F1003B31FD /* LogInViewController.swift */,
 				4BC27B0C27FED005000906DA /* UserInfoViewController.swift */,
 			);
 			path = Info;
@@ -235,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC27B0D27FED005000906DA /* UserInfoViewController.swift in Sources */,
+				4BC27B3C2801ECB9000906DA /* NavigationController.swift in Sources */,
+				4BC27B3A2801A123000906DA /* HeaderCollectionReusableView.swift in Sources */,
 				4B5355C027FAC1F1003B31FD /* SearchViewController.swift in Sources */,
 				4B5355BF27FAC1F1003B31FD /* RegisterViewController.swift in Sources */,
 				4B5355C127FAC1F1003B31FD /* LogInViewController.swift in Sources */,

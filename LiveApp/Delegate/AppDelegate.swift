@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import RxSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

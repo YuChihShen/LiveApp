@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import RxSwift
+import RxCocoa
 
 class LogInViewController: UIViewController,UITextFieldDelegate {
 
@@ -19,11 +21,14 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     
     let BorderColor = UIColor.lightGray.cgColor
     let FocusBorderColor = UIColor.darkGray.cgColor
+    let disposeBag = DisposeBag()
+    var user = Auth.auth().currentUser
     
     @IBAction func LogIn(_ sender: Any) {
         Auth.auth().signIn(withEmail: AccountText.text ?? "", password: PasswordText.text ?? ""){(user,error) in
             if error == nil{
                 self.tabBarController?.selectedIndex = 0
+                self.navigationController?.viewDidLoad()
             }else{
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -54,18 +59,9 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         // LoginButton 外觀設定
         LogInButton.layer.backgroundColor = UIColor.black.cgColor
         LogInButton.layer.cornerRadius = LogInButton.bounds.midY
-        
       
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if Auth.auth().currentUser != nil {
-                self.performSegue(withIdentifier: "ShowInfo", sender: nil)
-            }
-        }
-    }
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -76,9 +72,14 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         if AccountText.isFirstResponder {AccountLabel.layer.borderColor = FocusBorderColor}
         if PasswordText.isFirstResponder{PasswordLabel.layer.borderColor = FocusBorderColor}
         
+        // test rxswift
+        PasswordText.rx.text.orEmpty.asObservable().subscribe(onNext: {
+            if $0.count > 0{self.PasswordText.isSecureTextEntry = true}
+        }).disposed(by: disposeBag)
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         AccountLabel.layer.borderColor = BorderColor
         PasswordLabel.layer.borderColor = BorderColor
     }
+    
 }
