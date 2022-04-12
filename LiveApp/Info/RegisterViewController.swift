@@ -54,6 +54,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
         picPersonal.layer.cornerRadius = picPersonal.bounds.midY
         

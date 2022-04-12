@@ -18,7 +18,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     
     func update(){
         UserHeadPhoto.layer.cornerRadius = UserHeadPhoto.bounds.midY
-        print("userUpdate!!")
         self.UserNickName.text = userNickName
         let imageRef = Storage.storage().reference().child(userEmail)
         imageRef.getData(maxSize: 3 * 1024 * 1024){(data,error)in

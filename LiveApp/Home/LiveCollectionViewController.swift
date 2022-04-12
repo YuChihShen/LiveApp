@@ -70,8 +70,9 @@ class LiveCollectionViewController: UICollectionViewController {
         return true
     }
     // Cell 被選中的事件
-//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))!
+        present(mediaView, animated: false)
+    }
     
 }

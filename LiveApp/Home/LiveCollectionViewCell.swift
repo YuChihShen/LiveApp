@@ -23,6 +23,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
                 completion(image)
             } else {
                 completion(nil)
+                
             }
         }.resume()
     }
