@@ -62,6 +62,8 @@ class LiveCollectionViewController: UICollectionViewController {
         cell.NickName.text = String(roomResult?.stream_list[indexPath.item].nickname ?? "")
         cell.peoPlecount = roomResult?.stream_list[indexPath.item].online_num ?? 0
         cell.urlString = roomResult?.stream_list[indexPath.item].head_photo ?? ""
+        cell.tagsText = roomResult?.stream_list[indexPath.item].tags ?? ""
+        cell.createTags()
         cell.update()
         return cell
     }

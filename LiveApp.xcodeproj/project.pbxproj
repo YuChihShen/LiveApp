@@ -101,9 +101,9 @@
 		4B53559C27FAC14B003B31FD /* LiveApp */ = {
 			isa = PBXGroup;
 			children = (
-				4B798E5D280432D00017D844 /* Search */,
 				4BC27AFE27FD4A21000906DA /* Delegate */,
 				4B5355CA27FAF892003B31FD /* Home */,
+				4B798E5D280432D00017D844 /* Search */,
 				4B5355D427FC92B0003B31FD /* Info */,
 				4B5355CD27FC24C1003B31FD /* Model */,
 				4B5355C727FAC259003B31FD /* Main.storyboard */,
@@ -121,8 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				4B5355BB27FAC1F1003B31FD /* LiveCollectionViewController.swift */,
-				4B5355B827FAC1F1003B31FD /* LiveCollectionViewCell.swift */,
 				4BC27B392801A123000906DA /* HeaderCollectionReusableView.swift */,
+				4B5355B827FAC1F1003B31FD /* LiveCollectionViewCell.swift */,
 				4BC27B3F2802CDA9000906DA /* MediaVewController.swift */,
 			);
 			path = Home;

@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class LiveCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var LiveView: UIImageView!
@@ -15,6 +16,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
     
     var peoPlecount = 0
     var urlString = ""
+    var tagsText = ""
     
     func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -23,11 +25,40 @@ class LiveCollectionViewCell: UICollectionViewCell {
                 completion(image)
             } else {
                 completion(nil)
-                
             }
         }.resume()
     }
-    
+    func createTags(){
+        let cellWidth = self.layer.bounds.width
+        var tagNum = 88
+        var x = cellWidth * 0.05
+        let y = cellWidth * 0.7
+        let width = cellWidth * 0.4
+        let height = cellWidth * 0.1
+        
+        if tagsText.count != 0  {
+            let tags = tagsText.components(separatedBy: ",")
+            for tag in tags {
+                if let label = self.viewWithTag(tagNum) as? UILabel{
+                    label.text = "#\(tag)"
+                }else{
+                    createLabel(tag: tagNum,text: tag, x: x, y: y, width: width, height: height)
+                }
+                x += (width + height / 3)
+                tagNum += 1
+            }
+        }
+    }
+    func createLabel(tag:Int,text:String,x:Double,y:Double,width:Double,height:Double){
+        let tagLabel = UILabel(frame: CGRect(x: x, y: y, width: width, height: height))
+        tagLabel.text = "#\(text)"
+        tagLabel.textColor = UIColor.white
+        tagLabel.textAlignment = .center
+        tagLabel.backgroundColor = UIColor.secondaryLabel
+        tagLabel.font = UIFont.systemFont(ofSize: 14)
+        tagLabel.tag = tag
+        self.addSubview(tagLabel)
+    }
     
     func update() {
         LiveView.image = UIImage(named: "paopao")
@@ -50,7 +81,6 @@ class LiveCollectionViewCell: UICollectionViewCell {
         
         PeopleCount.attributedText = PeopleCountText
         PeopleCount.layer.cornerRadius = PeopleCount.bounds.midY
-        
         fetchImage(url: URL(string: urlString)!) { image in
             guard let image = image else { return }
             DispatchQueue.main.async {
@@ -58,4 +88,5 @@ class LiveCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
 }

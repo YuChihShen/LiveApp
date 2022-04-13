@@ -17,14 +17,9 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
     var user = Auth.auth().currentUser
     
     override func viewWillAppear(_ animated: Bool) {
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
-            self.user = user
-            self.collectionView.reloadData()
-        }
+        self.collectionView.reloadData()
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle!)
-    }
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         let width = (collectionView.bounds.width - 8 * 3) / 2
@@ -72,13 +67,17 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SearchCollectionViewCell
         switch indexPath.section{
         case 1:
-//            cell.NickName.text = String(searchRoom[indexPath.item].nickname ?? "")
-//            cell.peoPlecount = searchRoom[indexPath.item].online_num ?? 0
+            cell.NickName.text = String(searchRoom[indexPath.item].nickname )
+            cell.peoPlecount = searchRoom[indexPath.item].online_num
             cell.urlString = searchRoom[indexPath.item].head_photo
+            cell.tagsText = searchRoom[indexPath.item].tags
+            cell.createTags()
         case 2:
-//            cell.NickName.text = String(roomResult?.lightyear_list[indexPath.item].nickname ?? "")
-//            cell.peoPlecount = roomResult?.lightyear_list[indexPath.item].online_num ?? 0
+            cell.NickName.text = String(roomResult?.lightyear_list[indexPath.item].nickname ?? "")
+            cell.peoPlecount = roomResult?.lightyear_list[indexPath.item].online_num ?? 0
             cell.urlString = roomResult?.lightyear_list[indexPath.item].head_photo ?? ""
+            cell.tagsText = roomResult?.lightyear_list[indexPath.item].tags ?? ""
+            cell.createTags()
         default:
             break
         }
@@ -99,14 +98,19 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count ?? 0 > 0{
             searchRoom = []
-            searchRoom = roomResult?.lightyear_list
-                .filter({Room in Room.nickname.uppercased().contains(searchBar.text!)})
-//                .filter({Room in Room.tags.uppercased().contains(searchBar.text!)})
+            searchRoom += (roomResult?.lightyear_list.filter({Room in Room.nickname.uppercased().contains(searchBar.text!)}))!
+            for room in searchRoom{
+                searchRoom.removeAll { _ in room.tags.uppercased().contains(searchBar.text!)}
+            }
+            searchRoom += (roomResult?.lightyear_list.filter({Room in Room.tags.uppercased().contains(searchBar.text!)}))!
+           
         }else{
             searchRoom = nil
         }
         self.collectionView.reloadSections(IndexSet(1..<collectionView.numberOfSections))
     }
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
    
-    
 }
