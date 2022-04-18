@@ -17,16 +17,6 @@ class UserSupport{
     let passwordRegex = "(?=.*[0-9])(?=.*[a-z])^[0-9A-Za-z]{6,12}$"
     
     init(account: Observable<String>,password: Observable<String>){
-//        let accountRegex = "(?=.*[0-9])(?=.*[a-z])^[0-9A-Za-z]{4,20}$"
-//        let passwordRegex = "(?=.*[0-9])(?=.*[a-z])^[0-9A-Za-z]{6,12}$"
-//        accountValid = account
-//            .map{try! verifyMethold(regex: self.accountRegex, text: $0)}
-//            .share(replay: 1)
-//        passwordValid = password
-//            .map{try! verifyMethold(regex: self.passwordRegex, text: $0)}
-//            .share(replay: 1)
-//        actionValid = Observable.combineLatest(accountValid, passwordValid) { $0 && $1 }
-//            .share(replay: 1)
         
             accountValid = account
                 .map { $0.count >= 5 }

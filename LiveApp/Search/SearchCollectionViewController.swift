@@ -11,17 +11,20 @@ import FirebaseAuth
 private let reuseIdentifier = "SearchCell"
 
 class SearchCollectionViewController: UICollectionViewController,UISearchBarDelegate,UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var tabItem: UITabBarItem!
+    
     var handle: AuthStateDidChangeListenerHandle?
     var roomResult = try? JSONDecoder().decode(Rooms.self, from: data)
     var searchRoom: [Room]!
     var user = Auth.auth().currentUser
     var scrollTop = true
+    
     override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
+//        self.tabItem.image = UIImage(named: "picPersonal")
+        searchRoom = nil
         self.collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
-    }
-    override func viewDidLayoutSubviews() {
-      
+        self.collectionView.reloadData()
+        
     }
  
     override func viewDidLoad() {

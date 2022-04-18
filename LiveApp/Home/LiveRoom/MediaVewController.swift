@@ -16,6 +16,7 @@ class MediaAVViewController: AVPlayerViewController {
     var videoPath = ""
     var looper: AVPlayerLooper?
     let playerItem = URL(fileURLWithPath: Bundle.main.path(forResource: "hime3", ofType: "mp4")!)
+   
     // ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()

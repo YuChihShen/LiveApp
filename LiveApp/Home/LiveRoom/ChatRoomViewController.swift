@@ -6,9 +6,10 @@
 //
 
 import UIKit
-import Starscream
+import FirebaseAuth
 import RxCocoa
 import RxSwift
+
 
 class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate {
     
@@ -28,10 +29,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var isAVplayerShouldTurnOff = false
     var messageStore:[message] = []
     var webSocketTask:URLSessionWebSocketTask? = nil
-    
+    let inputTextHolder = "一起聊個天吧..."
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        if Auth.auth().currentUser != nil {
+            self.nickName = Auth.auth().currentUser?.displayName ?? ""
+        }
         
         
         self.modalPresentationStyle = .overCurrentContext
@@ -93,19 +96,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         cell.stackView.clipsToBounds = true
         cell.stackView.layer.cornerRadius = 5
         
-//        let testString = "測試測試測試測試測試測試jjjjjjjjjjjjjjjjjjjjjjjjj測試測試測試測試測試測試"
-//        let testString2 = "測試測試測試"
-//        var testStore = [testString]
-//        testStore.insert("0\(testString)", at: 0)
-//        testStore.insert("1\(testString2)", at: 0)
-//        testStore.insert("2\(testString)", at: 0)
-//        testStore.insert("3\(testString2)", at: 0)
-//        testStore.insert("4\(testString)", at: 0)
-//        testStore.insert("5\(testString2)", at: 0)
-//        testStore.insert("6\(testString)", at: 0)
-//        cell.ContentText.text = "\(testStore[indexPath.row])"
-//        cell.UserNameText.text = "\(testString2)"
-        
         self.OutputText.transform = CGAffineTransform(scaleX: 1, y: -1)
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         
@@ -116,14 +106,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             cell.UserNameText.text = messageStore[indexPath.row].userText
             cell.ContentText.text = messageStore[indexPath.row].contentText
         }
-//        cell.alpha
-        
-//        for cellbg in 0... cells{
-//            self.OutputText.visibleCells[cellbg].layer.opacity = 1 - Float(cellbg) * 0.1
-//        }
-//        self.OutputText.visibleCells[0].layer.opacity = 1
-//        self.OutputText.visibleCells[self.OutputText.visibleCells.count].layer.opacity = 0.3
-//        print("cells\(self.OutputText.visibleCells)")
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -140,7 +122,9 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     // 發送訊息
     @IBAction func sentMessage(_ sender: Any) {
-        if self.inputText.text.count > 0 {
+        let regexText = try! NSRegularExpression(pattern: "[ ]{0,\(inputText.text.count)}").numberOfMatches(in: inputText.text, options: .reportProgress, range: NSRange(location: 0, length: inputText.text.count))
+        print("regex:\(regexText)")
+        if self.inputText.text.count > 0 && regexText != 2{
             let text = "{\"action\":\"N\",\"content\":\"\(self.inputText.text ?? "")\"}"
             webSocketTask?.send(.string("\(text)")) { error in
                 if let error = error {
@@ -148,6 +132,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
+        self.inputText.text = ""
     }
     // websocket URL Trans
     func urlTrans(nickname:String) -> URL{
@@ -230,7 +215,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("textViewDidBeginEditing:\(self.keyboardHeight)")
+//        print("textViewDidBeginEditing:\(self.keyboardHeight)")
         self.inputTextConstraintY.constant = 0 - self.keyboardHeight + self.offset
         UIView.animate(withDuration: 0.2, delay: 0.01, animations: {
             self.inputText.center =
@@ -244,10 +229,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             self.OutputText.center =
             CGPoint(x: self.OutputText.center.x, y: self.OutputText.center.y - self.keyboardHeight + self.offset)
         })
-        print("center:\(self.inputText.center)")
+        if self.inputText.text == self.inputTextHolder {
+            self.inputText.text = ""
+            }
+//        print("color:\(self.inputText.textColor)")
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        print("textViewDidEndEditing:\(self.keyboardHeight)")
         self.inputText.center =
         CGPoint(x: self.inputText.center.x, y:self.inputText.center.y + self.keyboardHeight - self.offset )
         self.Send.center =
@@ -258,14 +245,16 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         CGPoint(x: self.SendBackground.center.x, y: self.SendBackground.center.y + self.keyboardHeight - self.offset)
         self.OutputText.center =
         CGPoint(x: self.OutputText.center.x, y: self.OutputText.center.y + self.keyboardHeight - self.offset)
-        print("center:\(self.inputText.center)")
         self.inputTextConstraintY.constant = 0
+        if self.inputText.text.count == 0 {
+            self.inputText.text = self.inputTextHolder
+        }
     }
     
         /// 監聽鍵盤開啟事件(鍵盤切換時總會觸發，不管是不是相同 type 的....例如：預設鍵盤 → 數字鍵盤)
         @objc func keyboardWillShow(_ notification: Notification) {
             if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-                print("keyboardWillShow:\(self.keyboardHeight)")
+//                print("keyboardWillShow:\(self.keyboardHeight)")
                 self.keyboardHeight = keyboardFrame.cgRectValue.height
             }
         }
@@ -273,7 +262,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
        }
         /// 監聽鍵盤關閉事件(鍵盤關掉時才會觸發)
         @objc func keyboardWillHide(_ notification: Notification) {
-            print("keyboardWillHide:\(self.keyboardHeight)")
+//            print("keyboardWillHide:\(self.keyboardHeight)")
         }
     
     @IBAction func tap(_ sender: Any) {
