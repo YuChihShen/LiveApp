@@ -19,6 +19,7 @@ class LiveCollectionViewController: UICollectionViewController {
         handle = Auth.auth().addStateDidChangeListener { auth, user in
             self.user = user
             self.viewDidLoad()
+            self.collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
@@ -59,6 +60,7 @@ class LiveCollectionViewController: UICollectionViewController {
     // Cell 設定 -> 宣告 Cell 為自製 Cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LiveCollectionViewCell
+        cell.RoomName.text = String(roomResult?.stream_list[indexPath.item].stream_title ?? "")
         cell.NickName.text = String(roomResult?.stream_list[indexPath.item].nickname ?? "")
         cell.peoPlecount = roomResult?.stream_list[indexPath.item].online_num ?? 0
         cell.urlString = roomResult?.stream_list[indexPath.item].head_photo ?? ""
@@ -74,6 +76,7 @@ class LiveCollectionViewController: UICollectionViewController {
     // Cell 被選中的事件
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))!
+//        let homePage = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
         present(mediaView, animated: false)
     }
     

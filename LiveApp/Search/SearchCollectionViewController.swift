@@ -15,9 +15,13 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
     var roomResult = try? JSONDecoder().decode(Rooms.self, from: data)
     var searchRoom: [Room]!
     var user = Auth.auth().currentUser
-    
+    var scrollTop = true
     override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
+        self.collectionView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+    }
+    override func viewDidLayoutSubviews() {
+      
     }
  
     override func viewDidLoad() {
@@ -38,11 +42,9 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
         let  searchReusableview = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader",
                         withReuseIdentifier: "SearchHead", for: indexPath) as! SearchHeaderCollectionReusableView
         if kind == "UICollectionElementKindSectionHeader" {
-            
             searchReusableview.section = indexPath.section
             searchReusableview.update()
         }
-        
         return searchReusableview
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -67,12 +69,14 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SearchCollectionViewCell
         switch indexPath.section{
         case 1:
+            cell.RoomName.text = String(searchRoom[indexPath.item].stream_title)
             cell.NickName.text = String(searchRoom[indexPath.item].nickname )
             cell.peoPlecount = searchRoom[indexPath.item].online_num
             cell.urlString = searchRoom[indexPath.item].head_photo
             cell.tagsText = searchRoom[indexPath.item].tags
             cell.createTags()
         case 2:
+            cell.RoomName.text = String(roomResult?.lightyear_list[indexPath.item].stream_title ?? "")
             cell.NickName.text = String(roomResult?.lightyear_list[indexPath.item].nickname ?? "")
             cell.peoPlecount = roomResult?.lightyear_list[indexPath.item].online_num ?? 0
             cell.urlString = roomResult?.lightyear_list[indexPath.item].head_photo ?? ""
@@ -103,6 +107,10 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
                 searchRoom.removeAll { _ in room.tags.uppercased().contains(searchBar.text!)}
             }
             searchRoom += (roomResult?.lightyear_list.filter({Room in Room.tags.uppercased().contains(searchBar.text!)}))!
+            for room in searchRoom{
+                searchRoom.removeAll { _ in room.stream_title.uppercased().contains(searchBar.text!)}
+            }
+            searchRoom += (roomResult?.lightyear_list.filter({Room in Room.stream_title.uppercased().contains(searchBar.text!)}))!
            
         }else{
             searchRoom = nil
@@ -112,5 +120,7 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
     }
-   
+    @IBAction func tap(_ sender: Any) {
+        self.view.endEditing(true)
+    }
 }

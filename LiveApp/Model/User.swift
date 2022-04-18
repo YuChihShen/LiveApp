@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
+import UIKit
 
-struct User: Codable, Identifiable {
-    @DocumentID var id: String?
-    let NickName: String
-    let Account: String
-    let PhotoURL: String
+struct UserInfo {
+    var NickName: String
+    var Account: String
+    var Password:String
+    var Memo : Bool
+    var HeadPhoto: UIImage
 }
