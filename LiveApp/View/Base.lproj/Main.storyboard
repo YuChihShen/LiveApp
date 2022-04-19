@@ -1084,10 +1084,10 @@
             </objects>
             <point key="canvasLocation" x="-182" y="572"/>
         </scene>
-        <!--Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="H7u-cs-PDn">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" interfaceStyle="light" id="VJO-Fd-qIA" customClass="TabBarViewController" customModule="LiveApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" interfaceStyle="light" id="VJO-Fd-qIA" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bgj-oZ-1mg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
