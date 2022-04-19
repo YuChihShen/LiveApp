@@ -469,7 +469,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zNB-DK-mLx">
                                 <rect key="frame" x="97" y="279" width="267.5" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                 <connections>
                                     <outlet property="delegate" destination="PD1-aE-FFz" id="Fo2-Oc-Vrj"/>
                                 </connections>
@@ -483,7 +483,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5QH-X9-50y">
                                 <rect key="frame" x="97" y="401.5" width="267.5" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="username"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES" textContentType="username"/>
                                 <connections>
                                     <outlet property="delegate" destination="PD1-aE-FFz" id="7pa-b4-5nt"/>
                                 </connections>
@@ -549,6 +549,26 @@
                                     <action selector="passwordSwitch:" destination="PD1-aE-FFz" eventType="touchUpInside" id="CDd-Ja-vQ4"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="S9S-2V-e1x">
+                                <rect key="frame" x="287" y="496" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="S9S-2V-e1x" secondAttribute="height" multiplier="30:31" id="oGY-e9-G6o"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記住我" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmB-V4-3E4">
+                                <rect key="frame" x="325" y="500.5" width="57" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fC7-uU-uaK">
+                                <rect key="frame" x="283.5" y="495.5" width="98" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="memoMe:" destination="PD1-aE-FFz" eventType="touchUpInside" id="zum-PN-PTB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zyh-Ur-pMR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -561,11 +581,13 @@
                             <constraint firstItem="exW-NS-8Gb" firstAttribute="centerY" secondItem="Zyh-Ur-pMR" secondAttribute="centerY" multiplier="0.85" id="5ad-Re-fcC"/>
                             <constraint firstItem="bm6-ab-1kr" firstAttribute="centerY" secondItem="Zyh-Ur-pMR" secondAttribute="centerY" multiplier="1.15" id="6Ys-3g-bck"/>
                             <constraint firstItem="FL6-mO-143" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="6he-d9-aWH"/>
+                            <constraint firstItem="fC7-uU-uaK" firstAttribute="centerX" secondItem="S9S-2V-e1x" secondAttribute="centerX" multiplier="1.1" id="8Bh-Cg-SO7"/>
                             <constraint firstItem="exW-NS-8Gb" firstAttribute="width" secondItem="Zyh-Ur-pMR" secondAttribute="width" multiplier="0.833333" id="Dgz-ef-33g"/>
                             <constraint firstItem="bm6-ab-1kr" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="Eeg-Wm-Wkt"/>
                             <constraint firstItem="exW-NS-8Gb" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="EzZ-bE-dgd"/>
                             <constraint firstItem="eaf-Yx-0ju" firstAttribute="width" secondItem="05L-er-6JZ" secondAttribute="width" multiplier="0.0724638" id="I3z-98-fvx"/>
                             <constraint firstItem="zNB-DK-mLx" firstAttribute="centerY" secondItem="TXk-JH-k0k" secondAttribute="centerY" id="Jrb-WF-sNY"/>
+                            <constraint firstItem="gmB-V4-3E4" firstAttribute="centerY" secondItem="S9S-2V-e1x" secondAttribute="centerY" id="Nc0-br-I7P"/>
                             <constraint firstItem="bm6-ab-1kr" firstAttribute="height" secondItem="Zyh-Ur-pMR" secondAttribute="height" multiplier="0.0436391" id="T5Q-3L-i5v"/>
                             <constraint firstItem="U5S-4q-vms" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="TMR-R9-IeO"/>
                             <constraint firstItem="hH5-hm-B0V" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="VFZ-Iv-Kro"/>
@@ -579,19 +601,28 @@
                             <constraint firstItem="hH5-hm-B0V" firstAttribute="width" secondItem="05L-er-6JZ" secondAttribute="width" multiplier="0.86" id="cbq-F2-Qjs"/>
                             <constraint firstItem="eaf-Yx-0ju" firstAttribute="centerY" secondItem="Zyh-Ur-pMR" secondAttribute="centerY" multiplier="1.01" id="dU1-Ug-HOm"/>
                             <constraint firstItem="zNB-DK-mLx" firstAttribute="width" secondItem="TXk-JH-k0k" secondAttribute="width" multiplier="0.750923" id="eH1-rW-94U"/>
+                            <constraint firstItem="S9S-2V-e1x" firstAttribute="centerY" secondItem="Zyh-Ur-pMR" secondAttribute="centerY" multiplier="1.2" id="eQj-qR-ijZ"/>
                             <constraint firstItem="FL6-mO-143" firstAttribute="centerY" secondItem="Zyh-Ur-pMR" secondAttribute="centerY" multiplier="1.5" id="eeW-Zg-mY0"/>
+                            <constraint firstItem="gmB-V4-3E4" firstAttribute="centerX" secondItem="S9S-2V-e1x" secondAttribute="centerX" multiplier="1.17" id="few-w5-Mth"/>
                             <constraint firstItem="TXk-JH-k0k" firstAttribute="width" secondItem="05L-er-6JZ" secondAttribute="width" multiplier="0.86" id="fiZ-ee-VUB"/>
                             <constraint firstItem="U5S-4q-vms" firstAttribute="height" secondItem="05L-er-6JZ" secondAttribute="height" multiplier="0.0591716" id="gU6-uX-zFD"/>
+                            <constraint firstItem="gmB-V4-3E4" firstAttribute="height" secondItem="S9S-2V-e1x" secondAttribute="height" multiplier="0.677419" id="hQN-QM-taf"/>
                             <constraint firstItem="BGX-Hg-uiP" firstAttribute="centerX" secondItem="eaf-Yx-0ju" secondAttribute="centerX" id="hpf-Xe-Wyi"/>
                             <constraint firstItem="5QH-X9-50y" firstAttribute="width" secondItem="hH5-hm-B0V" secondAttribute="width" multiplier="0.750923" id="iTa-kH-cJp"/>
+                            <constraint firstItem="fC7-uU-uaK" firstAttribute="height" secondItem="S9S-2V-e1x" secondAttribute="height" id="jUV-Ml-NTq"/>
                             <constraint firstItem="TXk-JH-k0k" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" id="jaS-uY-2kc"/>
+                            <constraint firstItem="fC7-uU-uaK" firstAttribute="width" secondItem="S9S-2V-e1x" secondAttribute="width" multiplier="3.26667" id="lCe-f1-YWy"/>
                             <constraint firstItem="TXk-JH-k0k" firstAttribute="height" secondItem="05L-er-6JZ" secondAttribute="height" multiplier="0.08" id="lbY-dm-DAn"/>
+                            <constraint firstItem="S9S-2V-e1x" firstAttribute="centerX" secondItem="Zyh-Ur-pMR" secondAttribute="centerX" multiplier="1.46" id="n1G-d4-Nr2"/>
                             <constraint firstItem="j2G-e8-Fui" firstAttribute="width" secondItem="eaf-Yx-0ju" secondAttribute="width" id="pYg-kK-4yH"/>
                             <constraint firstItem="zNB-DK-mLx" firstAttribute="height" secondItem="TXk-JH-k0k" secondAttribute="height" multiplier="0.80303" id="q7S-cm-3jA"/>
+                            <constraint firstItem="fC7-uU-uaK" firstAttribute="centerY" secondItem="S9S-2V-e1x" secondAttribute="centerY" id="sVp-cu-Tdc"/>
                             <constraint firstItem="U5S-4q-vms" firstAttribute="centerY" secondItem="05L-er-6JZ" secondAttribute="centerY" multiplier="16:13" id="tZz-qb-0EA"/>
+                            <constraint firstItem="S9S-2V-e1x" firstAttribute="width" secondItem="Zyh-Ur-pMR" secondAttribute="width" multiplier="0.0724638" id="tvU-9b-0Mf"/>
                             <constraint firstItem="BGX-Hg-uiP" firstAttribute="centerY" secondItem="j2G-e8-Fui" secondAttribute="centerY" id="uRq-R8-Jrp"/>
                             <constraint firstItem="j2G-e8-Fui" firstAttribute="centerY" secondItem="eaf-Yx-0ju" secondAttribute="centerY" id="v1x-Qs-I1I"/>
                             <constraint firstItem="BGX-Hg-uiP" firstAttribute="width" secondItem="eaf-Yx-0ju" secondAttribute="width" id="vP3-fA-g9M"/>
+                            <constraint firstItem="gmB-V4-3E4" firstAttribute="width" secondItem="S9S-2V-e1x" secondAttribute="width" multiplier="1.9" id="vdm-Bx-hLx"/>
                             <constraint firstItem="5QH-X9-50y" firstAttribute="height" secondItem="hH5-hm-B0V" secondAttribute="height" multiplier="0.80303" id="vfu-cA-YEd"/>
                             <constraint firstItem="FL6-mO-143" firstAttribute="height" secondItem="Zyh-Ur-pMR" secondAttribute="height" multiplier="0.0784024" id="vn3-6X-NRz"/>
                             <constraint firstItem="eaf-Yx-0ju" firstAttribute="width" secondItem="Zyh-Ur-pMR" secondAttribute="width" multiplier="0.0724638" id="xMr-As-0SN"/>
@@ -600,7 +631,7 @@
                     <tabBarItem key="tabBarItem" title="Info" image="person" catalog="system" selectedImage="person.fill" id="COa-hh-q9a"/>
                     <navigationItem key="navigationItem" title="登入頁面" id="yVg-Sn-jcP"/>
                     <connections>
-                        <outlet property="AccountLabel" destination="TXk-JH-k0k" id="7f1-61-5AA"/>
+                        <outlet property="AccountLabel" destination="TXk-JH-k0k" id="TIA-OU-nrg"/>
                         <outlet property="AccountNote" destination="exW-NS-8Gb" id="JQP-0q-2Ep"/>
                         <outlet property="AccountText" destination="zNB-DK-mLx" id="kUl-qM-cmI"/>
                         <outlet property="LogInButton" destination="U5S-4q-vms" id="pr2-eB-SMO"/>
@@ -608,6 +639,9 @@
                         <outlet property="PasswordNote" destination="bm6-ab-1kr" id="h4o-dC-jPf"/>
                         <outlet property="PasswordText" destination="5QH-X9-50y" id="n1S-PQ-K6w"/>
                         <outlet property="RegisterButton" destination="FL6-mO-143" id="MCS-d2-idZ"/>
+                        <outlet property="memo" destination="gmB-V4-3E4" id="7bv-9q-BYt"/>
+                        <outlet property="memoButton" destination="fC7-uU-uaK" id="80U-zY-bJP"/>
+                        <outlet property="memoImage" destination="S9S-2V-e1x" id="z10-kD-kiu"/>
                         <outlet property="passwordAppear" destination="eaf-Yx-0ju" id="HRU-4T-IYr"/>
                         <outlet property="passwordAppearSwitch" destination="BGX-Hg-uiP" id="ugW-Vw-BX7"/>
                         <outlet property="passwordHidden" destination="j2G-e8-Fui" id="akd-Cc-Li8"/>
@@ -615,7 +649,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CE7-fJ-eRW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="842" y="572"/>
+            <point key="canvasLocation" x="840.57971014492762" y="571.875"/>
         </scene>
         <!--會員資訊-->
         <scene sceneID="QWN-NX-Wrq">
@@ -839,7 +873,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入4-20位字母或數字" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ldM-r4-6Hl">
                                         <rect key="frame" x="117" y="367.5" width="255" height="43.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="one-time-code"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="one-time-code"/>
                                         <connections>
                                             <outlet property="delegate" destination="5Am-z0-nuc" id="4Vj-Vn-UEj"/>
                                         </connections>
@@ -860,7 +894,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入6-12位字母或數字" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="p1I-TB-7s6">
                                         <rect key="frame" x="117" y="452" width="255" height="43.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="username"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" textContentType="username"/>
                                         <connections>
                                             <outlet property="delegate" destination="5Am-z0-nuc" id="yC4-Mt-tc7"/>
                                         </connections>
@@ -1035,7 +1069,7 @@
         <scene sceneID="r3f-lU-Gxl">
             <objects>
                 <navigationController storyboardIdentifier="Nav" toolbarHidden="NO" id="9L0-qS-qAv" customClass="NavigationController" customModule="LiveApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Info" image="person" catalog="system" selectedImage="person.fill" id="Zvp-9z-PIm"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Info" image="person" catalog="system" selectedImage="person.fill" id="Zvp-9z-PIm"/>
                     <navigationItem key="navigationItem" id="iOI-m4-ydp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yLa-Qx-jGa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1050,10 +1084,10 @@
             </objects>
             <point key="canvasLocation" x="-182" y="572"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="H7u-cs-PDn">
             <objects>
-                <tabBarController storyboardIdentifier="TabBar" interfaceStyle="light" id="VJO-Fd-qIA" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" interfaceStyle="light" id="VJO-Fd-qIA" customClass="TabBarViewController" customModule="LiveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bgj-oZ-1mg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1195,7 +1229,7 @@
                             <outletCollection property="gestureRecognizers" destination="sAK-xI-7H1" appends="YES" id="apy-Mi-uLa"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="2e1-qM-32r"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="2e1-qM-32r"/>
                     <connections>
                         <outlet property="tabItem" destination="2e1-qM-32r" id="3NX-8a-kMR"/>
                     </connections>
@@ -1212,6 +1246,7 @@
     </scenes>
     <resources>
         <image name="btnEdit" width="41" height="41"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="eye.slash" catalog="system" width="128" height="86"/>
         <image name="house" catalog="system" width="128" height="106"/>

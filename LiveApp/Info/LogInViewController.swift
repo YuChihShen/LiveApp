@@ -9,9 +9,12 @@ import UIKit
 import FirebaseAuth
 import RxSwift
 import RxCocoa
+import Lottie
 
 class LogInViewController: UIViewController,UITextFieldDelegate {
 
+    @IBOutlet weak var memoImage: UIImageView!
+    @IBOutlet weak var memo: UILabel!
     @IBOutlet weak var AccountLabel: UILabel!
     @IBOutlet weak var AccountText: UITextField!
     @IBOutlet weak var PasswordLabel: UILabel!
@@ -20,23 +23,36 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var RegisterButton: UIButton!
     @IBOutlet weak var AccountNote: UILabel!
     
+    @IBOutlet weak var memoButton: UIButton!
     @IBOutlet weak var passwordAppearSwitch: UIButton!
     @IBOutlet weak var passwordHidden: UIImageView!
     @IBOutlet weak var passwordAppear: UIImageView!
     @IBOutlet weak var PasswordNote: UILabel!
     let BorderColor = UIColor.lightGray.cgColor
     let FocusBorderColor = UIColor.darkGray.cgColor
+    let userdefault = UserDefaults()
     let disposeBag = DisposeBag()
     var user = Auth.auth().currentUser
     var accountValid = false
     var passwordValid = false
-    
+    var memoColor = false
     @IBAction func LogIn(_ sender: Any) {
         self.AccountText.text! += "@user.com"
         Auth.auth().signIn(withEmail: AccountText.text ?? "", password: PasswordText.text ?? ""){(user,error) in
             if error == nil{
                 self.tabBarController?.selectedIndex = 0
                 self.navigationController?.viewDidLoad()
+                print(self.memoColor)
+                if self.memoColor == true {
+                    self.userdefault.set("\(self.AccountText.text!)", forKey: "account")
+                    self.userdefault.set("\(self.PasswordText.text!)", forKey: "password")
+                    self.userdefault.set(true, forKey: "memo")
+                }else{
+                    self.userdefault.set("", forKey: "account")
+                    self.userdefault.set("", forKey: "password")
+                    self.userdefault.set(false, forKey: "memo")
+                }
+                
             }else{
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -55,6 +71,15 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.memoButton.setTitle("", for: .normal)
+        self.memo.textColor = .lightGray
+        self.memoImage.tintColor = .lightGray
+       
+        self.memoColor = UserDefaults.standard.bool(forKey: "memo")
+       
+      
+        
+       
         
         AccountLabel.text = "   帳號"
         PasswordLabel.text = "   密碼"
@@ -84,9 +109,21 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         let labelHidden = true
         AccountNote.isHidden = labelHidden
         PasswordNote.isHidden = labelHidden
-        
         LogInButton.isEnabled = false
       
+        
+        if memoColor == true{
+            self.memo.textColor = .systemGreen
+            self.memoImage.tintColor = .systemGreen
+            let accountText = (UserDefaults.standard.value(forKey: "account"))
+            let passwordText =  (UserDefaults.standard.string(forKey: "password"))
+            let accountTitle = (accountText! as! String).components(separatedBy: "@")
+            self.AccountText.text = accountTitle[0]
+            self.PasswordText.text = passwordText as? String
+            self.LogInButton.isEnabled = true
+           
+            
+        }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,6 +194,18 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    @IBAction func memoMe(_ sender: Any) {
+        if memoColor == false{
+            self.memo.textColor = .systemGreen
+            self.memoImage.tintColor = .systemGreen
+            self.memoColor.toggle()
+            
+        }else{
+            self.memo.textColor = .lightGray
+            self.memoImage.tintColor = .lightGray
+            self.memoColor.toggle()
+        }
+    }
     @IBAction func passwordSwitch(_ sender: Any) {
         passwordAppear.isHidden.toggle()
         passwordHidden.isHidden.toggle()

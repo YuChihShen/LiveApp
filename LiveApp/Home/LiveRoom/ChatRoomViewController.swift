@@ -131,14 +131,20 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
                     print("WebSocket sending error: \(error)")
                 }
             }
+        }else{
+            let alertMessage = message( userText: "注意", contentText: "禁止輸入空白字串" )
+            self.messageStore.insert(alertMessage, at: 0)
+            self.OutputText.reloadData()
         }
+       
         self.inputText.text = ""
     }
     // websocket URL Trans
     func urlTrans(nickname:String) -> URL{
         var urlComponent = URLComponents()
+        // wss://client-dev.lottcube.asia
          urlComponent.scheme = "wss"
-         urlComponent.host = "lott-dev.lottcube.asia"
+         urlComponent.host = "client-dev.lottcube.asia"
          urlComponent.path = "/ws/chat/chat:app_test"
          urlComponent.queryItems = [
          URLQueryItem(name: "nickname", value: nickname)

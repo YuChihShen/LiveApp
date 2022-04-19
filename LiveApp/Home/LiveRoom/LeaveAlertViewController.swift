@@ -26,7 +26,7 @@ class LeaveAlertViewController: UIViewController {
         cancelButton.setTitle("再看一下", for: .normal)
         
         animationView.frame = CGRect(x: 0, y: 0, width: 130, height: 75)
-        animationView.center = CGPoint(x: self.alertBG.center.x * 0.92 , y: self.alertBG.center.y * 0.81)
+        animationView.center = CGPoint(x: self.alertBG.center.x * 0.9 , y: self.alertBG.center.y * 0.81)
         animationView.contentMode = .scaleAspectFill
         animationView.animationSpeed = 2
         view.addSubview(animationView)
