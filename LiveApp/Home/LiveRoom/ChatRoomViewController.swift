@@ -186,6 +186,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         switch result?.event ?? ""{
             // 系統廣播
             case "admin_all_broadcast":
+            
                 let notification = try? JSONDecoder().decode(admin_all_broadcast.self, from: data!)
                 messsageText.userText = "系統廣播"
                 messsageText.contentText = notification?.body?.content?.tw ?? ""

@@ -39,6 +39,8 @@
 		4BC27B3C2801ECB9000906DA /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC27B3B2801ECB9000906DA /* NavigationController.swift */; };
 		4BC27B402802CDA9000906DA /* MediaVewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC27B3F2802CDA9000906DA /* MediaVewController.swift */; };
 		4BC27B422802E738000906DA /* hime3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4BC27B412802E72C000906DA /* hime3.mp4 */; };
+		4BC37FE5280F4766001B0D78 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC37FE4280F4766001B0D78 /* InteractiveTransition.swift */; };
+		4BC37FE7280FDC0C001B0D78 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC37FE6280FDC0C001B0D78 /* TabBarViewController.swift */; };
 		4BCE35C7280ADCF4006D1D86 /* FireBaseSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE35C6280ADCF4006D1D86 /* FireBaseSupport.swift */; };
 		4BCE35C9280B105E006D1D86 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE35C8280B105E006D1D86 /* PhotoPicker.swift */; };
 		4BCE35CC280B5221006D1D86 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4BCE35CB280B5221006D1D86 /* Lottie */; };
@@ -74,6 +76,8 @@
 		4BC27B3B2801ECB9000906DA /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		4BC27B3F2802CDA9000906DA /* MediaVewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaVewController.swift; sourceTree = "<group>"; };
 		4BC27B412802E72C000906DA /* hime3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hime3.mp4; sourceTree = "<group>"; };
+		4BC37FE4280F4766001B0D78 /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
+		4BC37FE6280FDC0C001B0D78 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4BCE35C6280ADCF4006D1D86 /* FireBaseSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseSupport.swift; sourceTree = "<group>"; };
 		4BCE35C8280B105E006D1D86 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		4BCE35ED280C41AF006D1D86 /* UserSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSupport.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 		4B53559C27FAC14B003B31FD /* LiveApp */ = {
 			isa = PBXGroup;
 			children = (
+				4BC37FE6280FDC0C001B0D78 /* TabBarViewController.swift */,
 				4BC27AFE27FD4A21000906DA /* Delegate */,
 				4B5355CA27FAF892003B31FD /* Home */,
 				4B798E5D280432D00017D844 /* Search */,
@@ -138,6 +143,7 @@
 				4BCE35C6280ADCF4006D1D86 /* FireBaseSupport.swift */,
 				4BCE35ED280C41AF006D1D86 /* UserSupport.swift */,
 				4BCE35C8280B105E006D1D86 /* PhotoPicker.swift */,
+				4BC37FE4280F4766001B0D78 /* InteractiveTransition.swift */,
 				4B3C05DB2807C4A1008EEB60 /* View */,
 				4B5355AB27FAC14D003B31FD /* Info.plist */,
 				4BC27AF527FD4238000906DA /* GoogleService-Info.plist */,
@@ -324,7 +330,9 @@
 				4B5355A027FAC14B003B31FD /* SceneDelegate.swift in Sources */,
 				4B5355C327FAC1F1003B31FD /* LiveCollectionViewCell.swift in Sources */,
 				4BCE35C7280ADCF4006D1D86 /* FireBaseSupport.swift in Sources */,
+				4BC37FE5280F4766001B0D78 /* InteractiveTransition.swift in Sources */,
 				4B798E5F280432FD0017D844 /* SearchHeaderCollectionReusableView.swift in Sources */,
+				4BC37FE7280FDC0C001B0D78 /* TabBarViewController.swift in Sources */,
 				4B5355C627FAC1F1003B31FD /* LiveCollectionViewController.swift in Sources */,
 				4BCE35C9280B105E006D1D86 /* PhotoPicker.swift in Sources */,
 				4BC27B0927FE8C34000906DA /* User.swift in Sources */,
@@ -479,7 +487,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S7Z5P46A6U;
+				DEVELOPMENT_TEAM = GMGL43CU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "yu-chih";
@@ -513,7 +521,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S7Z5P46A6U;
+				DEVELOPMENT_TEAM = GMGL43CU35;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "yu-chih";
