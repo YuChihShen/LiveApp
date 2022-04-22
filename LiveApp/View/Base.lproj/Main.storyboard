@@ -123,7 +123,7 @@
                             <outlet property="delegate" destination="4ot-ul-bTw" id="YFR-zE-ItW"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="pHC-Wq-O78"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="house" catalog="system" selectedImage="house.fill" id="pHC-Wq-O78"/>
                     <navigationItem key="navigationItem" id="Wxi-SV-4XG"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8FF-xD-x6u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1069,7 +1069,7 @@
         <scene sceneID="r3f-lU-Gxl">
             <objects>
                 <navigationController storyboardIdentifier="Nav" toolbarHidden="NO" id="9L0-qS-qAv" customClass="NavigationController" customModule="LiveApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Info" image="person" catalog="system" selectedImage="person.fill" id="Zvp-9z-PIm"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Info" image="person" catalog="system" selectedImage="person.fill" id="Zvp-9z-PIm"/>
                     <navigationItem key="navigationItem" id="iOI-m4-ydp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yLa-Qx-jGa">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1095,9 +1095,9 @@
                         <tabBarAppearance key="standardAppearance" backgroundEffect="systemUltraThinMaterialLight"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4ot-ul-bTw" kind="relationship" relationship="viewControllers" id="jzh-JU-0tM"/>
-                        <segue destination="noY-5W-4Qs" kind="relationship" relationship="viewControllers" id="bbO-IU-0RQ"/>
-                        <segue destination="9L0-qS-qAv" kind="relationship" relationship="viewControllers" id="zd9-b7-hgm"/>
+                        <segue destination="4ot-ul-bTw" kind="relationship" relationship="viewControllers" destinationCreationSelector="0" id="jzh-JU-0tM"/>
+                        <segue destination="noY-5W-4Qs" kind="relationship" relationship="viewControllers" destinationCreationSelector="1" id="bbO-IU-0RQ"/>
+                        <segue destination="9L0-qS-qAv" kind="relationship" relationship="viewControllers" destinationCreationSelector="2" id="zd9-b7-hgm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTl-ea-cox" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1229,7 +1229,7 @@
                             <outletCollection property="gestureRecognizers" destination="sAK-xI-7H1" appends="YES" id="apy-Mi-uLa"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" tag="1" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="2e1-qM-32r"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Search" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="2e1-qM-32r"/>
                     <connections>
                         <outlet property="tabItem" destination="2e1-qM-32r" id="3NX-8a-kMR"/>
                     </connections>

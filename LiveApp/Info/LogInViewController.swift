@@ -36,9 +36,10 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     var accountValid = false
     var passwordValid = false
     var memoColor = false
+    
     @IBAction func LogIn(_ sender: Any) {
-        self.AccountText.text! += "@user.com"
-        Auth.auth().signIn(withEmail: AccountText.text ?? "", password: PasswordText.text ?? ""){(user,error) in
+        let accountEmail = ("\(self.AccountText.text!)@user.com")
+        Auth.auth().signIn(withEmail: accountEmail, password: PasswordText.text ?? ""){(user,error) in
             if error == nil{
                 self.tabBarController?.selectedIndex = 0
                 self.navigationController?.viewDidLoad()
@@ -60,6 +61,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         if Auth.auth().currentUser != nil {
                do {
@@ -69,6 +71,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                }
            }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.memoButton.setTitle("", for: .normal)
@@ -76,10 +79,6 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         self.memoImage.tintColor = .lightGray
        
         self.memoColor = UserDefaults.standard.bool(forKey: "memo")
-       
-      
-        
-       
         
         AccountLabel.text = "   帳號"
         PasswordLabel.text = "   密碼"

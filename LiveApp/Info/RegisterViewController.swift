@@ -33,7 +33,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
     
     @IBOutlet weak var PasswordAppearSwitch: UIButton!
     var keyboardHeight: CGFloat = 0
-    var userSupport:UserSupport!
     let photoPicker = PhotoPicker()
     let fireBaseSupport = FireBaseSupport()
     let BorderColor = UIColor.lightGray.cgColor
@@ -175,6 +174,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
         }
         
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if Account.isFirstResponder {
             AccountLabel.layer.borderColor = FocusBorderColor
@@ -190,12 +190,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
             NickNameLabel.layer.borderColor = FocusBorderColor
         }
         self.viewConstraintY.constant = self.viewElement.center.y - self.view.center.y
-        
-        // 避免 strong password
-//        Password.rx.text.orEmpty.asObservable().subscribe(onNext: {
-//            if $0.count > 0{self.Password.isSecureTextEntry = true}
-//        }).disposed(by: bag)
-        
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         AccountLabel.layer.borderColor = BorderColor
@@ -205,7 +199,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
         CGPoint(x: self.view.center.x, y: self.view.center.y )
         self.viewConstraintY.constant = 0
     }
-
+    //密碼是否可視
     @IBAction func passwordAppear(_ sender: Any) {
         passwordAppear.isHidden.toggle()
         passwordHidden.isHidden.toggle()
