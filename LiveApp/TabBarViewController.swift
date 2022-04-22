@@ -42,8 +42,8 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate {
             pulse.autoreverses = false
             pulse.fromValue = 0
             pulse.toValue = (Double.pi)
-            pulse.fillMode = CAMediaTimingFillMode.forwards
-            pulse.isRemovedOnCompletion = true
+//            pulse.fillMode = CAMediaTimingFillMode.forwards
+//            pulse.isRemovedOnCompletion = true
 
 
 
