@@ -74,16 +74,21 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = NSLocalizedString("SIGNIN PAGE", comment: "")
+        self.AccountText.placeholder = NSLocalizedString("Please enter 4 - 20 letters or numbers", comment: "")
+        self.PasswordText.placeholder = NSLocalizedString("Please enter 6 - 12 letters or numbers", comment: "")
+        
         self.memoButton.setTitle("", for: .normal)
         self.memo.textColor = .lightGray
         self.memoImage.tintColor = .lightGray
        
         self.memoColor = UserDefaults.standard.bool(forKey: "memo")
         
-        AccountLabel.text = "   帳號"
-        PasswordLabel.text = "   密碼"
-        LogInButton.setTitle("登入", for: .normal)
-        RegisterButton.setTitle("註冊", for: .normal)
+        AccountLabel.text = NSLocalizedString("ACCOUNT", comment: "")
+        PasswordLabel.text = NSLocalizedString("PASSWORD", comment: "")
+        LogInButton.setTitle( NSLocalizedString("SIGNIN", comment: ""), for: .normal)
+        RegisterButton.setTitle(NSLocalizedString("SIGNUP", comment: ""), for: .normal)
         RegisterButton.setTitleColor(.systemBlue, for: .normal)
        
         // AccountLabel 外觀設定
@@ -97,7 +102,6 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         PasswordLabel.layer.cornerRadius = PasswordLabel.bounds.midY 
         
         // LoginButton 外觀設定
-//        LogInButton.layer.backgroundColor = UIColor.black.cgColor
         LogInButton.layer.cornerRadius = LogInButton.bounds.midY
         
         passwordHidden.isHidden = false
@@ -110,7 +114,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         PasswordNote.isHidden = labelHidden
         LogInButton.isEnabled = false
       
-        
+        memo.text = NSLocalizedString("REMEMBER", comment: "")
         if memoColor == true{
             self.memo.textColor = .systemGreen
             self.memoImage.tintColor = .systemGreen
@@ -118,10 +122,8 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
             let passwordText =  (UserDefaults.standard.string(forKey: "password"))
             let accountTitle = (accountText! as! String).components(separatedBy: "@")
             self.AccountText.text = accountTitle[0]
-            self.PasswordText.text = passwordText as? String
+            self.PasswordText.text = passwordText
             self.LogInButton.isEnabled = true
-           
-            
         }
     }
 
@@ -148,33 +150,34 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         // 帳號驗證
         let accountString = AccountText.text ?? ""
         if accountString.count > 0 && (accountString.count < 4 || accountString.count > 20) {
-            self.AccountNote.text = "請輸入 4 - 20 位字母或數字"
+            self.AccountNote.text = NSLocalizedString("Please enter 4 - 20 letters or numbers", comment: "")
             self.AccountNote.textColor = .systemGreen
             self.accountValid = false
         }else if accountCompareResult == 0 {
-            self.AccountNote.text = "帳號格式錯誤"
+            self.AccountNote.text = NSLocalizedString("wrong format for account", comment: "")
             self.AccountNote.textColor = .systemPink
             self.accountValid = false
         }else{
-            self.AccountNote.text = "帳號格式正確"
+            self.AccountNote.text = NSLocalizedString("correct format for account", comment: "")
             self.AccountNote.textColor = .systemGreen
             self.accountValid = true
         }
         // 密碼驗證
         let passwordStrig = PasswordText.text ?? ""
         if accountString.count > 0 && (passwordStrig.count < 6 || passwordStrig.count > 12) {
-            self.PasswordNote.text = "請輸入 6 - 12 位字母或數字"
+            self.PasswordNote.text = NSLocalizedString("Please enter 6 - 12 letters or numbers", comment: "")
             self.PasswordNote.textColor = .systemGreen
             self.passwordValid = false
         }else if passwordCompareResult == 0 {
-            self.PasswordNote.text = "密碼格式錯誤"
+            self.PasswordNote.text = NSLocalizedString("wrong format for password", comment: "")
             self.PasswordNote.textColor = .systemPink
             self.passwordValid = false
         }else{
-            self.PasswordNote.text = "密碼格式正確"
+            self.PasswordNote.text = NSLocalizedString("correct format for password", comment: "")
             self.PasswordNote.textColor = .systemGreen
             self.passwordValid = true
         }
+        
         if accountValid && passwordValid {
             self.LogInButton.isEnabled = true
 //            self.LogInButton.layer.backgroundColor = UIColor.black.cgColor

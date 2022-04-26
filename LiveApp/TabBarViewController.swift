@@ -35,7 +35,7 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate {
                 }
             }
 
-            let pulse = CABasicAnimation(keyPath: "transform.rotation.y")
+            let pulse = CABasicAnimation(keyPath: "transform.rotation")
             pulse.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
             pulse.duration = 0.2
             pulse.repeatCount = 1

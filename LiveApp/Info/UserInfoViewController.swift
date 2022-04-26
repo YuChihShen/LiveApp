@@ -26,19 +26,20 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imagePicker.delegate = self
-        self.infoEditButton.setTitle("", for: .normal)
-        self.infoEditTextfield.isHidden = true
-        self.navigationItem.setHidesBackButton(true, animated: false)        
+        //暱稱編輯
+        infoEditButton.setTitle("", for: .normal)
+        infoEditTextfield.isHidden = true
+        //頭貼外觀
         UserHeadPic.layer.cornerRadius = UserHeadPic.bounds.midY
         // 個人訊息
         let accountString = user?.email ?? ""
         let userAccount = accountString.components(separatedBy: "@")
-        AccountLabel.text = "帳號: \(userAccount[0])"
-        NickNameLabel.text = "暱稱: \(user?.displayName ?? "")"
+        AccountLabel.text = "\(NSLocalizedString("ACCOUNT", comment: "")) : \(userAccount[0])"
+        NickNameLabel.text = "\(NSLocalizedString("NICKNAME", comment: "")) : \(user?.displayName ?? "")"
         TapButton.setTitle("", for: .normal)
-        LogOutButton.setTitle("登出", for: .normal)
-        
+        LogOutButton.setTitle(NSLocalizedString("SIGNOUT", comment: ""), for: .normal)
         // 取得頭貼 Ref
         let HeadPhotoRef = Storage.storage().reference().child(user?.email ?? "")
         // 下載頭貼
@@ -72,19 +73,19 @@ class UserInfoViewController: UIViewController,UIImagePickerControllerDelegate &
         self.infoEditTextfield.isHidden = true
         if self.infoEditTextfield.text?.count != 0 {
             let nicknameEditAlert =
-            UIAlertController(title: "確定更改暱稱？", message: "新暱稱為：\(self.infoEditTextfield.text ?? "")", preferredStyle: .alert)
+            UIAlertController(title: NSLocalizedString("confirm replace nickname", comment: ""), message: "\(NSLocalizedString("new nickname", comment: ""))：\(self.infoEditTextfield.text ?? "")", preferredStyle: .alert)
             nicknameEditAlert.view.tintColor = UIColor.gray
-            let okAction = UIAlertAction(title: "確定更改", style: .default){_ in
+            let okAction = UIAlertAction(title: NSLocalizedString("replace nickname", comment: ""), style: .default){_ in
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = self.infoEditTextfield.text
                 changeRequest?.commitChanges()
-                self.NickNameLabel.text = "暱稱: \(self.infoEditTextfield.text ?? "")"
+                self.NickNameLabel.text = "\(NSLocalizedString("NICKNAME", comment: "")): \(self.infoEditTextfield.text ?? "")"
                 self.infoEditTextfield.text = nil
                 self.dismiss(animated: false)
             }
             okAction.setValue(UIColor.systemBlue, forKey: "titleTextColor")
             nicknameEditAlert.addAction(okAction)
-            let cancelAction = UIAlertAction(title: "取消", style: .default){_ in
+            let cancelAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .default){_ in
                 self.infoEditTextfield.text = nil
                 self.dismiss(animated: false)
             }

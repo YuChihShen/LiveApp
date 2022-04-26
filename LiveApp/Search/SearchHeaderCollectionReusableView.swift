@@ -18,12 +18,12 @@ class SearchHeaderCollectionReusableView: UICollectionReusableView {
             SearchBar.isHidden = true
             SearchBar.isUserInteractionEnabled = false
             Classification.isHidden = false
-            Classification.text = "搜尋結果"
+            Classification.text = NSLocalizedString("SEARCH RESULT", comment: "")
         case 2:
             SearchBar.isHidden = true
             SearchBar.isUserInteractionEnabled = false
             Classification.isHidden = false
-            Classification.text = "熱門推薦"
+            Classification.text = NSLocalizedString("HOT", comment: "")
         default:
             Classification.isHidden = true
             SearchBar.isHidden = false

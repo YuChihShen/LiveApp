@@ -12,7 +12,7 @@ class ChatOuputTableViewCell: UITableViewCell {
     @IBOutlet weak var ContentText: UILabel!
     @IBOutlet weak var UserNameText: UILabel!
     @IBOutlet weak var stackView: UIStackView!
-    
+    @IBOutlet weak var ConnectTag: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         

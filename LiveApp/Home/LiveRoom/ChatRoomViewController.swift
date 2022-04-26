@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 
-class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate {
+class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate {
     
     @IBOutlet weak var LeaveButton: UIButton!
     @IBOutlet weak var Leave: UIImageView!
@@ -25,11 +25,11 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     var keyboardHeight: CGFloat = 0
     let offset = UIScreen.main.bounds.height * 0.065
-    var nickName = "訪客"
+    var nickName = NSLocalizedString("VISITOR", comment: "")
     var isAVplayerShouldTurnOff = false
     var messageStore:[message] = []
     var webSocketTask:URLSessionWebSocketTask? = nil
-    let inputTextHolder = "一起聊個天吧..."
+    let inputTextHolder = NSLocalizedString("LET'S PARTY DAY", comment: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser != nil {
@@ -51,6 +51,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         self.OutputText.backgroundColor = UIColor.clear
 
         self.OutputText.separatorStyle = .none
+       
         // 註冊監聽鍵盤 frame 改變的事件
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         // 註冊監聽鍵盤出現的事件
@@ -91,17 +92,17 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         return messageStore.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 設置cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatOuputTableViewCell
-        
+        // 設置對話框
         cell.stackView.clipsToBounds = true
         cell.stackView.layer.cornerRadius = 5
-        
+        // 設置對話顯示順序
         self.OutputText.transform = CGAffineTransform(scaleX: 1, y: -1)
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
         
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
-        
         if messageStore.count != 0{
             cell.UserNameText.text = messageStore[indexPath.row].userText
             cell.ContentText.text = messageStore[indexPath.row].contentText
@@ -110,6 +111,22 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    func tableViewFadeOut(){
+        let topCell = self.OutputText.visibleCells
+        for cell in topCell{
+            if cell.center.y >= self.OutputText.bounds.maxY * 0.9{
+                cell.alpha = 0.3
+            }else if cell.center.y >= self.OutputText.bounds.maxY * 0.85{
+                cell.alpha = 0.6
+            }
+            else{
+                cell.alpha = 1
+            }
+        }
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.tableViewFadeOut()
     }
     
     // 離開房間
@@ -122,9 +139,8 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     
     // 發送訊息
     @IBAction func sentMessage(_ sender: Any) {
-        let regexText = try! NSRegularExpression(pattern: "[ ]{0,\(inputText.text.count)}").numberOfMatches(in: inputText.text, options: .reportProgress, range: NSRange(location: 0, length: inputText.text.count))
-        print("regex:\(regexText)")
-        if self.inputText.text.count > 0 && regexText != 2{
+        let emp = self.inputText.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if !(emp.isEmpty){
             let text = "{\"action\":\"N\",\"content\":\"\(self.inputText.text ?? "")\"}"
             webSocketTask?.send(.string("\(text)")) { error in
                 if let error = error {
@@ -132,11 +148,11 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }else{
-            let alertMessage = message( userText: "注意", contentText: "禁止輸入空白字串" )
+            let alertMessage = message( userText: NSLocalizedString("NOTICE", comment: ""), contentText: NSLocalizedString("inhibit blank strings", comment: "") )
             self.messageStore.insert(alertMessage, at: 0)
             self.OutputText.reloadData()
+            self.tableViewFadeOut()
         }
-       
         self.inputText.text = ""
     }
     // websocket URL Trans
@@ -170,8 +186,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             }
             DispatchQueue.main.async {
                 self.OutputText.reloadData()
-//                let cells = self.OutputText.visibleCells.count
-//                self.OutputText.visibleCells[cells].alpha = 0.3
+                self.tableViewFadeOut()
             }
             self.receive(webSocketTask: webSocketTask)
         }
@@ -188,7 +203,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             case "admin_all_broadcast":
             
                 let notification = try? JSONDecoder().decode(admin_all_broadcast.self, from: data!)
-                messsageText.userText = "系統廣播"
+                messsageText.userText = NSLocalizedString("system broadcast", comment: "")
                 messsageText.contentText = notification?.body?.content?.tw ?? ""
             // 聊天訊息
             case "default_message":
@@ -202,14 +217,14 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
                 var userAction = ""
                 switch notification?.body?.entry_notice?.action ?? ""{
                     case "enter":
-                        userAction = "進入"
+                        userAction = NSLocalizedString("ENTER", comment: "")
                     case "leave":
-                        userAction = "離開"
+                        userAction = NSLocalizedString("LEAVE", comment: "")
                     default:
                         break
                 }
-            messsageText.userText = "房間訊息"
-            messsageText.contentText = "\(userName) \(userAction)房間"
+            messsageText.userText = NSLocalizedString("room information", comment: "")
+            messsageText.contentText = "\(userName) \(userAction)\(NSLocalizedString("ROOM", comment: ""))"
             // 關閉房間
             case "sys_room_endStream":
                 let notification = try? JSONDecoder().decode(sys_room_endStream.self, from: data!)
@@ -276,24 +291,3 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.endEditing(true)
     }
 }
-
-
-//extension ChatRoomViewController: URLSessionWebSocketDelegate {
-//    public func urlSession(_ session: URLSession,
-//                           webSocketTask: URLSessionWebSocketTask,
-//                           didOpenWithProtocol protocol: String?) {
-//        print("URLSessionWebSocketTask is connected")
-//    }
-//    public func urlSession(_ session: URLSession,
-//                           webSocketTask: URLSessionWebSocketTask,
-//                           didCloseWith closeCode: URLSessionWebSocketTask.CloseCode,
-//                           reason: Data?) {
-//        let reasonString: String
-//        if let reason = reason, let string = String(data: reason, encoding: .utf8) {
-//            reasonString = string
-//        } else {
-//            reasonString = ""
-//        }
-//        print("URLSessionWebSocketTask is closed: code=\(closeCode), reason=\(reasonString)")
-//    }
-//}

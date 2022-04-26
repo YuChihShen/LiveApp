@@ -1,0 +1,156 @@
+
+/* Class = "UITextField"; placeholder = "請輸入暱稱"; ObjectID = "0Be-M0-aqW"; */
+"0Be-M0-aqW.placeholder" = "請輸入暱稱";
+
+/* Class = "UILabel"; text = "12345"; ObjectID = "0G5-vr-Bhu"; */
+"0G5-vr-Bhu.text" = "12345";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0jI-IC-kKv"; */
+"0jI-IC-kKv.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "17W-Uo-Ups"; */
+"17W-Uo-Ups.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "17W-Uo-Ups"; */
+"17W-Uo-Ups.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Info"; ObjectID = "18w-pz-slx"; */
+"18w-pz-slx.title" = "Info";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2S4-sQ-7oo"; */
+"2S4-sQ-7oo.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "2e1-qM-32r"; */
+"2e1-qM-32r.title" = "Search";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BGX-Hg-uiP"; */
+"BGX-Hg-uiP.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Info"; ObjectID = "COa-hh-q9a"; */
+"COa-hh-q9a.title" = "Info";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "FL6-mO-143"; */
+"FL6-mO-143.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FL6-mO-143"; */
+"FL6-mO-143.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Info"; ObjectID = "Gwo-9H-Ghr"; */
+"Gwo-9H-Ghr.title" = "Info";
+
+/* Class = "UINavigationItem"; title = "會員資訊"; ObjectID = "Ipt-dd-2eP"; */
+"Ipt-dd-2eP.title" = "會員資訊";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Jkn-vU-z0b"; */
+"Jkn-vU-z0b.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "KJn-1I-wJS"; */
+"KJn-1I-wJS.text" = "Label";
+
+/* Class = "UILabel"; text = ":"; ObjectID = "Ohz-bA-dvy"; */
+"Ohz-bA-dvy.text" = ":";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Q0E-U5-NJ2"; */
+"Q0E-U5-NJ2.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SVm-1z-JAE"; */
+"SVm-1z-JAE.text" = "Label";
+
+/* Class = "UILabel"; text = "暱稱不可為空值"; ObjectID = "TGb-pg-Fgr"; */
+"TGb-pg-Fgr.text" = "暱稱不可為空值";
+
+/* Class = "UILabel"; text = "  Account"; ObjectID = "TXk-JH-k0k"; */
+"TXk-JH-k0k.text" = "  Account";
+
+/* Class = "UINavigationItem"; title = "註冊會員"; ObjectID = "TxV-2l-HYQ"; */
+"TxV-2l-HYQ.title" = "註冊會員";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "U5S-4q-vms"; */
+"U5S-4q-vms.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "U5S-4q-vms"; */
+"U5S-4q-vms.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WnW-7g-yLt"; */
+"WnW-7g-yLt.text" = "Label";
+
+/* Class = "UILabel"; text = "密碼格式錯誤"; ObjectID = "XLl-9L-d9G"; */
+"XLl-9L-d9G.text" = "密碼格式錯誤";
+
+/* Class = "UILabel"; text = "帳號格式錯誤"; ObjectID = "Z1f-h8-2ff"; */
+"Z1f-h8-2ff.text" = "帳號格式錯誤";
+
+/* Class = "UITabBarItem"; title = "Info"; ObjectID = "Zvp-9z-PIm"; */
+"Zvp-9z-PIm.title" = "Info";
+
+/* Class = "UILabel"; text = "密碼格式錯誤"; ObjectID = "bm6-ab-1kr"; */
+"bm6-ab-1kr.text" = "密碼格式錯誤";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "c66-Zt-KNk"; */
+"c66-Zt-KNk.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "c66-Zt-KNk"; */
+"c66-Zt-KNk.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cHl-91-cLl"; */
+"cHl-91-cLl.text" = "Label";
+
+/* Class = "UISearchBar"; cdJ-Ym-6ua.scopeButtonTitles[0] = "Title"; ObjectID = "cdJ-Ym-6ua"; */
+"cdJ-Ym-6ua.scopeButtonTitles[0]" = "Title";
+
+/* Class = "UISearchBar"; cdJ-Ym-6ua.scopeButtonTitles[1] = "Title"; ObjectID = "cdJ-Ym-6ua"; */
+"cdJ-Ym-6ua.scopeButtonTitles[1]" = "Title";
+
+/* Class = "UILabel"; text = "帳號格式錯誤"; ObjectID = "exW-NS-8Gb"; */
+"exW-NS-8Gb.text" = "帳號格式錯誤";
+
+/* Class = "UIButton"; configuration.title = "Button"; ObjectID = "fC7-uU-uaK"; */
+"fC7-uU-uaK.configuration.title" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fC7-uU-uaK"; */
+"fC7-uU-uaK.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "記住我"; ObjectID = "gmB-V4-3E4"; */
+"gmB-V4-3E4.text" = "記住我";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gnX-bK-WKA"; */
+"gnX-bK-WKA.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "  PassWord"; ObjectID = "hH5-hm-B0V"; */
+"hH5-hm-B0V.text" = "  PassWord";
+
+/* Class = "UITextField"; placeholder = "請輸入4-20位字母或數字"; ObjectID = "ldM-r4-6Hl"; */
+"ldM-r4-6Hl.placeholder" = "請輸入4-20位字母或數字";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nOd-dg-F5E"; */
+"nOd-dg-F5E.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "oeN-8Q-8tb"; */
+"oeN-8Q-8tb.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "請輸入6-12位字母或數字"; ObjectID = "p1I-TB-7s6"; */
+"p1I-TB-7s6.placeholder" = "請輸入6-12位字母或數字";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "pHC-Wq-O78"; */
+"pHC-Wq-O78.title" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pkm-Gn-6mU"; */
+"pkm-Gn-6mU.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "q43-lL-4FF"; */
+"q43-lL-4FF.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "smG-Jc-ZT6"; */
+"smG-Jc-ZT6.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vd1-Jo-vQk"; */
+"vd1-Jo-vQk.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "voC-r0-Wgc"; */
+"voC-r0-Wgc.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "登入頁面"; ObjectID = "yVg-Sn-jcP"; */
+"yVg-Sn-jcP.title" = "登入頁面";
+
+/* Class = "UILabel"; text = "確定離開聊天室？"; ObjectID = "zve-jd-Tuy"; */
+"zve-jd-Tuy.text" = "確定離開聊天室？";

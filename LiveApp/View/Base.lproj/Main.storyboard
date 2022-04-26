@@ -217,8 +217,8 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hon-PC-DD5">
-                                <rect key="frame" x="25" y="522.5" width="314.5" height="245.5"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="25" y="416.5" width="314.5" height="351.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -282,7 +282,9 @@
                                                 <constraint firstItem="KTk-z4-WxO" firstAttribute="top" secondItem="Kt7-V1-eph" secondAttribute="top" id="yTl-Bv-htH"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="ConnectTag" destination="Ohz-bA-dvy" id="gD7-pX-Fh8"/>
                                             <outlet property="ContentText" destination="0G5-vr-Bhu" id="n6D-b8-WQ7"/>
                                             <outlet property="UserNameText" destination="cHl-91-cLl" id="Ayy-mj-2GD"/>
                                             <outlet property="stackView" destination="KTk-z4-WxO" id="Eou-JW-3WF"/>
@@ -304,7 +306,7 @@
                             <constraint firstItem="S44-t6-nhj" firstAttribute="centerY" secondItem="Jlg-YO-o3v" secondAttribute="centerY" multiplier="0.3" id="4bE-ay-QQK"/>
                             <constraint firstItem="hon-PC-DD5" firstAttribute="bottom" secondItem="3cY-sA-pBc" secondAttribute="bottom" multiplier="0.93" id="8dM-Pk-WGT"/>
                             <constraint firstItem="UoN-S2-AcM" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="9Zp-vr-bRd"/>
-                            <constraint firstItem="hon-PC-DD5" firstAttribute="height" secondItem="Jlg-YO-o3v" secondAttribute="height" multiplier="0.3" id="C3k-9g-nrE"/>
+                            <constraint firstItem="hon-PC-DD5" firstAttribute="height" secondItem="Jlg-YO-o3v" secondAttribute="height" multiplier="0.43" id="C3k-9g-nrE"/>
                             <constraint firstItem="vd1-Jo-vQk" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="CXf-7g-uA5"/>
                             <constraint firstItem="3cY-sA-pBc" firstAttribute="width" secondItem="Jlg-YO-o3v" secondAttribute="width" multiplier="0.728261" id="FUP-r7-44q"/>
                             <constraint firstItem="NZU-Zu-wb0" firstAttribute="centerX" secondItem="nLS-nG-R2i" secondAttribute="centerX" id="JJz-Tb-PLM"/>
@@ -346,7 +348,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1594" y="-948"/>
+            <point key="canvasLocation" x="1592.753623188406" y="-948.21428571428567"/>
         </scene>
         <!--Leave Alert View Controller-->
         <scene sceneID="oTb-cx-DEc">
@@ -443,6 +445,7 @@
                     <connections>
                         <outlet property="alertBG" destination="NwJ-2R-5hc" id="VVC-L9-kF7"/>
                         <outlet property="cancelButton" destination="smG-Jc-ZT6" id="1Wk-AM-vEt"/>
+                        <outlet property="leaveAlert" destination="zve-jd-Tuy" id="lhp-P9-fij"/>
                         <outlet property="leaveButton" destination="voC-r0-Wgc" id="ZIk-P5-Vvv"/>
                     </connections>
                 </viewController>
@@ -459,10 +462,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Account" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXk-JH-k0k">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXk-JH-k0k">
                                 <rect key="frame" x="29" y="272" width="356" height="72"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="  Account">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="-1" height="-1"/>
                             </label>
@@ -474,10 +484,17 @@
                                     <outlet property="delegate" destination="PD1-aE-FFz" id="Fo2-Oc-Vrj"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  PassWord" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH5-hm-B0V">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hH5-hm-B0V">
                                 <rect key="frame" x="29" y="394" width="356" height="72"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="  PassWord">
+                                        <attributes>
+                                            <color key="NSColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" firstLineHeadIndent="20" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5QH-X9-50y">

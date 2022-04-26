@@ -16,15 +16,15 @@ class PhotoPicker:UIImagePickerController{
         let PhotoSelectAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         PhotoSelectAlert.view.tintColor = UIColor.gray
         // 相機
-        let cameraAction = UIAlertAction(title: "開啟相機", style: .default){ _ in self.takePicture(viewController: viewController)}
+        let cameraAction = UIAlertAction(title: NSLocalizedString("CAMERA", comment: ""), style: .default){ _ in self.takePicture(viewController: viewController)}
         cameraAction.setValue(UIColor.systemBlue, forKey: "titleTextColor")
         PhotoSelectAlert.addAction(cameraAction)
         // 相薄
-        let savedPhotosAlbumAction = UIAlertAction(title: "從相簿選取", style: .default){ _ in self.openPhotosAlbum(viewController: viewController)}
+        let savedPhotosAlbumAction = UIAlertAction(title: NSLocalizedString("pick from album", comment: ""), style: .default){ _ in self.openPhotosAlbum(viewController: viewController)}
         savedPhotosAlbumAction.setValue(UIColor.systemBlue, forKey: "titleTextColor")
         PhotoSelectAlert.addAction(savedPhotosAlbumAction)
         // 取消
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .cancel, handler: nil)
         cancelAction.setValue(UIColor.systemRed, forKey: "titleTextColor")
         PhotoSelectAlert.addAction(cancelAction)
         viewController.present(PhotoSelectAlert, animated: true, completion: nil)

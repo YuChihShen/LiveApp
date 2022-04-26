@@ -13,17 +13,19 @@ class LeaveAlertViewController: UIViewController {
     @IBOutlet weak var leaveButton: UIButton!
     @IBOutlet weak var alertBG: UILabel!
     
+    @IBOutlet weak var leaveAlert: UILabel!
     let animationView = AnimationView(name: "heartbreak")
     var isAVplayerShouldTurnOff = true
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.leaveAlert.text = NSLocalizedString("LEAVEALERT", comment: "")
         self.alertBG.clipsToBounds = true
         self.alertBG.layer.cornerRadius = 20
+        
         self.setBtn(btn: leaveButton)
         self.setBtn(btn: cancelButton)
-        leaveButton.setTitle("離開", for: .normal)
-        cancelButton.setTitle("再看一下", for: .normal)
+        leaveButton.setTitle(NSLocalizedString("LEAVE", comment: ""), for: .normal)
+        cancelButton.setTitle(NSLocalizedString("watch for a while", comment: ""), for: .normal)
         
         animationView.frame = CGRect(x: 0, y: 0, width: 130, height: 75)
         animationView.center = CGPoint(x: self.alertBG.center.x * 0.9 , y: self.alertBG.center.y * 0.81)
@@ -47,8 +49,7 @@ class LeaveAlertViewController: UIViewController {
     @IBAction func leave(_ sender: Any) {
         animationView.animationSpeed = 1
         animationView.play(fromProgress: 0.35, toProgress: 0.75, loopMode: .playOnce){_ in
-//            self.presentingViewController?.dismiss(animated: false)
-//            self.unwind(for: <#T##UIStoryboardSegue#>, towards: <#T##UIViewController#>)
+
         }
         
     }

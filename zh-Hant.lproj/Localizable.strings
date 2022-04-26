@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  LiveApp
+
+  Created by yu-chih on 2022/4/25.
+  
+*/
+"NICKNAME" = "暱稱";
+"ACCOUNT" = "帳號";
+"PASSWORD" = "密碼";
+"SENT" = "送出";
+"Please enter 4 - 20 letters or numbers" = "請輸入 4-20 字元或數字";
+"wrong format for account" = "帳號格式錯誤";
+"correct format for account" = "帳號格式正確";
+"Please enter 6 - 12 letters or numbers" = "請輸入 6-12 字元或數字";
+"wrong format for password" = "密碼格式錯誤";
+"correct format for password" = "密碼格式正確";
+"nickname couldn't be empty" = "暱稱不可為空";
+"SIGNIN" = "登入";
+"SIGNUP" = "註冊";
+"SIGNOUT" = "登出";
+"new nickname" = "新暱稱為";
+"confirm replace nickname" = "確定更改暱稱？";
+"replace nickname" = "確定更換";
+"CANCEL" = "取消";
+"CAMERA" = "相機";
+"pick from album" = "從相簿選取";
+"LEAVE" = "離開";
+"watch for a while" = "再看一下";
+"NOTICE" = "注意";
+"inhibit blank strings" = "禁止輸入空白字串";
+"system broadcast" = "系統廣播";
+"ENTER" = "進入";
+"room information" = "房間訊息";
+"ROOM" = "房間";
+"REMEMBER" = "記住我";
+"LEAVEALERT" = "確定離開聊天室？";
+"SIGNIN PAGE" = "登入頁面";
+"SIGNUP PAGE" = "註冊頁面";
+"please enter nickname" = "請輸入暱稱";
+"VISITOR" = "訪客";
+"LET'S PARTY DAY" = "一起聊天吧...";
+"SEARCH RESULT" = "搜尋結果";
+"HOT" = "熱門推薦";

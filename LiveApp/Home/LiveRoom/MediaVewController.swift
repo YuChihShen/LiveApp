@@ -16,6 +16,8 @@ class MediaAVViewController: AVPlayerViewController, UIGestureRecognizerDelegate
     var videoPath = ""
     var looper: AVPlayerLooper?
     let playerItem = URL(fileURLWithPath: Bundle.main.path(forResource: "hime3", ofType: "mp4")!)
+    let streamItem = URL(string: "http://samples.mplayerhq.hu/V-codecs/h264/interlaced_crop.mp4")
+   
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
            return .portrait
        }
@@ -24,10 +26,10 @@ class MediaAVViewController: AVPlayerViewController, UIGestureRecognizerDelegate
         super.viewDidLoad()
         let item = AVPlayerItem(url: playerItem)
         let player = AVQueuePlayer()
-        
         looper = AVPlayerLooper(player: player, templateItem: item)
+//        let player = AVPlayer.init(url: streamItem!)
         self.player = player
-        self.showsPlaybackControls = false
+        self.showsPlaybackControls = true
         videoGravity = AVLayerVideoGravity.resizeAspectFill
         player.play()
     }
