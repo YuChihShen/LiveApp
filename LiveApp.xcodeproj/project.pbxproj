@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		468CE11E28169BD700C73842 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 468CE12028169BD700C73842 /* Localizable.strings */; };
+		468CE1692818DB9A00C73842 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 468CE1682818DB9A00C73842 /* YouTubeiOSPlayerHelper */; };
 		4B3C0605280802E9008EEB60 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C0604280802E9008EEB60 /* ChatRoom.swift */; };
 		4B53559E27FAC14B003B31FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B53559D27FAC14B003B31FD /* AppDelegate.swift */; };
 		4B5355A027FAC14B003B31FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B53559F27FAC14B003B31FD /* SceneDelegate.swift */; };
@@ -106,6 +107,7 @@
 				4BC27B1627FFDC17000906DA /* FirebaseStorage in Frameworks */,
 				4BC27B0527FD7978000906DA /* RxCocoa in Frameworks */,
 				4BC27AFD27FD447F000906DA /* FirebaseStorageSwift-Beta in Frameworks */,
+				468CE1692818DB9A00C73842 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +260,7 @@
 				4BC27B1527FFDC17000906DA /* FirebaseStorage */,
 				4B798E88280699640017D844 /* SwiftyJSON */,
 				4BCE35CB280B5221006D1D86 /* Lottie */,
+				468CE1682818DB9A00C73842 /* YouTubeiOSPlayerHelper */,
 			);
 			productName = LiveApp;
 			productReference = 4B53559A27FAC14B003B31FD /* LiveApp.app */;
@@ -294,6 +297,7 @@
 				4BC27B0327FD7978000906DA /* XCRemoteSwiftPackageReference "RxSwift" */,
 				4B798E87280699640017D844 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4BCE35CA280B5221006D1D86 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				468CE1672818DB9A00C73842 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = 4B53559B27FAC14B003B31FD /* Products */;
 			projectDirPath = "";
@@ -597,6 +601,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		468CE1672818DB9A00C73842 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		4B798E87280699640017D844 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
@@ -632,6 +644,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		468CE1682818DB9A00C73842 /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 468CE1672818DB9A00C73842 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
 		4B798E88280699640017D844 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4B798E87280699640017D844 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

@@ -34,7 +34,7 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate {
                     tabbarbuttonArray.append(tabBarBtn)
                 }
             }
-
+      
             let pulse = CABasicAnimation(keyPath: "transform.rotation")
             pulse.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
             pulse.duration = 0.2
@@ -44,9 +44,6 @@ class TabBarViewController: UITabBarController,UITabBarControllerDelegate {
             pulse.toValue = (Double.pi)
 //            pulse.fillMode = CAMediaTimingFillMode.forwards
 //            pulse.isRemovedOnCompletion = true
-
-
-
             let tabBarLayer = (tabbarbuttonArray[index] as AnyObject).layer
             tabBarLayer?.add(pulse, forKey: nil)
 

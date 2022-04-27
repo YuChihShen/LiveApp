@@ -138,7 +138,7 @@
                 </avPlayerViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpw-Q7-fsE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="842" y="-946"/>
+            <point key="canvasLocation" x="841" y="-947"/>
         </scene>
         <!--Chat Room View Controller-->
         <scene sceneID="bzc-kf-X7m">
@@ -217,7 +217,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hon-PC-DD5">
-                                <rect key="frame" x="25" y="416.5" width="314.5" height="351.5"/>
+                                <rect key="frame" x="25" y="473.5" width="314.5" height="294.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
@@ -240,20 +240,20 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHl-91-cLl">
-                                                            <rect key="frame" x="6.5" y="0.0" width="103.5" height="24"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <rect key="frame" x="6.5" y="0.0" width="103.5" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohz-bA-dvy">
-                                                            <rect key="frame" x="110" y="0.0" width="9.5" height="26.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                            <rect key="frame" x="110" y="0.0" width="9.5" height="23"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G5-vr-Bhu">
-                                                            <rect key="frame" x="119.5" y="0.0" width="188.5" height="24"/>
-                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
+                                                            <rect key="frame" x="119.5" y="0.0" width="188.5" height="23"/>
+                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="19"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -306,7 +306,7 @@
                             <constraint firstItem="S44-t6-nhj" firstAttribute="centerY" secondItem="Jlg-YO-o3v" secondAttribute="centerY" multiplier="0.3" id="4bE-ay-QQK"/>
                             <constraint firstItem="hon-PC-DD5" firstAttribute="bottom" secondItem="3cY-sA-pBc" secondAttribute="bottom" multiplier="0.93" id="8dM-Pk-WGT"/>
                             <constraint firstItem="UoN-S2-AcM" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="9Zp-vr-bRd"/>
-                            <constraint firstItem="hon-PC-DD5" firstAttribute="height" secondItem="Jlg-YO-o3v" secondAttribute="height" multiplier="0.43" id="C3k-9g-nrE"/>
+                            <constraint firstItem="hon-PC-DD5" firstAttribute="height" secondItem="Jlg-YO-o3v" secondAttribute="height" multiplier="0.36" id="C3k-9g-nrE"/>
                             <constraint firstItem="vd1-Jo-vQk" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="CXf-7g-uA5"/>
                             <constraint firstItem="3cY-sA-pBc" firstAttribute="width" secondItem="Jlg-YO-o3v" secondAttribute="width" multiplier="0.728261" id="FUP-r7-44q"/>
                             <constraint firstItem="NZU-Zu-wb0" firstAttribute="centerX" secondItem="nLS-nG-R2i" secondAttribute="centerX" id="JJz-Tb-PLM"/>
@@ -348,7 +348,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1592.753623188406" y="-948.21428571428567"/>
+            <point key="canvasLocation" x="1764" y="-947"/>
         </scene>
         <!--Leave Alert View Controller-->
         <scene sceneID="oTb-cx-DEc">
@@ -452,7 +452,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kk-un-cED" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MiT-pf-nS7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2421.739130434783" y="-947.54464285714278"/>
+            <point key="canvasLocation" x="2939" y="-948"/>
         </scene>
         <!--登入頁面-->
         <scene sceneID="8tn-Zk-UCa">

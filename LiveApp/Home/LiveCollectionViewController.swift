@@ -76,7 +76,8 @@ class LiveCollectionViewController: UICollectionViewController {
     // Cell 被選中的事件
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))!
-//        let homePage = self.storyboard?.instantiateViewController(withIdentifier: "HomePage")
+//        let streamView = self.storyboard?.instantiateViewController(withIdentifier: "StreamView")
+//        present(mediaView!, animated: false)
         present(mediaView, animated: false)
     }
     

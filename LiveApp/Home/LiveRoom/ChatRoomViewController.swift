@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 
-class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate {
+class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate {
     
     @IBOutlet weak var LeaveButton: UIButton!
     @IBOutlet weak var Leave: UIImageView!
@@ -35,8 +35,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         if Auth.auth().currentUser != nil {
             self.nickName = Auth.auth().currentUser?.displayName ?? ""
         }
-        
-        
+    
         self.modalPresentationStyle = .overCurrentContext
         self.inputText.delegate = self
         // 設定UI元件
@@ -114,13 +113,16 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableViewFadeOut(){
         let topCell = self.OutputText.visibleCells
+        let tableViewY = self.OutputText.bounds.maxY
         for cell in topCell{
-            if cell.center.y >= self.OutputText.bounds.maxY * 0.9{
+            if cell.center.y >= tableViewY * 0.95{
                 cell.alpha = 0.3
-            }else if cell.center.y >= self.OutputText.bounds.maxY * 0.85{
+            }else if cell.center.y >= tableViewY * 0.9{
                 cell.alpha = 0.6
             }
-            else{
+            else if cell.center.y >= tableViewY * 0.85{
+                cell.alpha = 0.9
+            }else{
                 cell.alpha = 1
             }
         }
@@ -201,7 +203,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         switch result?.event ?? ""{
             // 系統廣播
             case "admin_all_broadcast":
-            
                 let notification = try? JSONDecoder().decode(admin_all_broadcast.self, from: data!)
                 messsageText.userText = NSLocalizedString("system broadcast", comment: "")
                 messsageText.contentText = notification?.body?.content?.tw ?? ""
@@ -274,19 +275,16 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
         /// 監聽鍵盤開啟事件(鍵盤切換時總會觸發，不管是不是相同 type 的....例如：預設鍵盤 → 數字鍵盤)
-        @objc func keyboardWillShow(_ notification: Notification) {
-            if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-//                print("keyboardWillShow:\(self.keyboardHeight)")
-                self.keyboardHeight = keyboardFrame.cgRectValue.height
-            }
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            self.keyboardHeight = keyboardFrame.cgRectValue.height
         }
-        @objc func keyboardWillChangeFrame(_ notification: Notification) {
-       }
-        /// 監聽鍵盤關閉事件(鍵盤關掉時才會觸發)
-        @objc func keyboardWillHide(_ notification: Notification) {
-//            print("keyboardWillHide:\(self.keyboardHeight)")
-        }
-    
+    }
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+   }
+    /// 監聽鍵盤關閉事件(鍵盤關掉時才會觸發)
+    @objc func keyboardWillHide(_ notification: Notification) {
+    }
     @IBAction func tap(_ sender: Any) {
         self.view.endEditing(true)
     }
