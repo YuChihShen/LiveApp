@@ -6,7 +6,8 @@
 //
 
 import Foundation
-    
+import UIKit
+
     struct Room:Codable{
         let head_photo:String
         let nickname:String

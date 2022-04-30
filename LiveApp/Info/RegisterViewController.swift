@@ -45,6 +45,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate, UIImagePicke
     let bag = DisposeBag()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.navigationItem.title = NSLocalizedString("SIGNUP PAGE", comment: "")
         self.NickName.placeholder = NSLocalizedString("please enter nickname", comment: "")

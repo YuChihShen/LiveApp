@@ -67,6 +67,7 @@ class LiveCollectionViewController: UICollectionViewController {
         cell.tagsText = roomResult?.stream_list[indexPath.item].tags ?? ""
         cell.createTags()
         cell.update()
+        
         return cell
     }
     // Cell 可被選取
@@ -75,9 +76,13 @@ class LiveCollectionViewController: UICollectionViewController {
     }
     // Cell 被選中的事件
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))!
-//        let streamView = self.storyboard?.instantiateViewController(withIdentifier: "StreamView")
-//        present(mediaView!, animated: false)
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! LiveCollectionViewCell
+        let image = cell.LiveView.image
+        let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))! as! MediaAVViewController
+        mediaView.roomHostNickname = cell.NickName!.text!
+        mediaView.roomHostPhoto = image!
+        
         present(mediaView, animated: false)
     }
     

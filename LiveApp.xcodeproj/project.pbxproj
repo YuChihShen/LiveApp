@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		468CE11E28169BD700C73842 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 468CE12028169BD700C73842 /* Localizable.strings */; };
 		468CE1692818DB9A00C73842 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 468CE1682818DB9A00C73842 /* YouTubeiOSPlayerHelper */; };
+		46B8A2CE281BEE1E0029079D /* LiveHostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B8A2CD281BEE1E0029079D /* LiveHostInfoViewController.swift */; };
 		4B3C0605280802E9008EEB60 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C0604280802E9008EEB60 /* ChatRoom.swift */; };
 		4B53559E27FAC14B003B31FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B53559D27FAC14B003B31FD /* AppDelegate.swift */; };
 		4B5355A027FAC14B003B31FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B53559F27FAC14B003B31FD /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		468CE12228169CB600C73842 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		468CE12328169CB600C73842 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		468CE12428169CBB00C73842 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		46B8A2CD281BEE1E0029079D /* LiveHostInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveHostInfoViewController.swift; sourceTree = "<group>"; };
 		4B3C0604280802E9008EEB60 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		4B53559A27FAC14B003B31FD /* LiveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B53559D27FAC14B003B31FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				4B798E802806729A0017D844 /* ChatRoomViewController.swift */,
 				4B798E822806940B0017D844 /* ChatOuputTableViewCell.swift */,
 				4BCE35EF280C74B0006D1D86 /* LeaveAlertViewController.swift */,
+				46B8A2CD281BEE1E0029079D /* LiveHostInfoViewController.swift */,
 			);
 			path = LiveRoom;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				4BCE35C7280ADCF4006D1D86 /* FireBaseSupport.swift in Sources */,
 				4BC37FE5280F4766001B0D78 /* InteractiveTransition.swift in Sources */,
 				4B798E5F280432FD0017D844 /* SearchHeaderCollectionReusableView.swift in Sources */,
+				46B8A2CE281BEE1E0029079D /* LiveHostInfoViewController.swift in Sources */,
 				4BC37FE7280FDC0C001B0D78 /* TabBarViewController.swift in Sources */,
 				4B5355C627FAC1F1003B31FD /* LiveCollectionViewController.swift in Sources */,
 				4BCE35C9280B105E006D1D86 /* PhotoPicker.swift in Sources */,
@@ -534,7 +538,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yu-chih.LiveApp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuchih.LiveApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -568,7 +572,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yu-chih.LiveApp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuchih.LiveApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

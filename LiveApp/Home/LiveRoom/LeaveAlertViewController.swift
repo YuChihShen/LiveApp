@@ -60,5 +60,8 @@ class LeaveAlertViewController: UIViewController {
         }
         
     }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.dismiss(animated: false)
+    }
     
 }

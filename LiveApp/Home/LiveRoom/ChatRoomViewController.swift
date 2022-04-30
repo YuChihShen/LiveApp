@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 
-class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate {
+class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate ,UIPopoverPresentationControllerDelegate{
     
     @IBOutlet weak var LeaveButton: UIButton!
     @IBOutlet weak var Leave: UIImageView!
@@ -22,23 +22,35 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var inputText: UITextView!
     @IBOutlet weak var OutputText: UITableView!
     @IBOutlet weak var inputTextConstraintY: NSLayoutConstraint!
+    @IBOutlet weak var hostInfo: UIImageView!
     
+    @IBOutlet weak var hostInfoBtn: UIButton!
+    @IBOutlet weak var hostInfoNickname: UILabel!
+    @IBOutlet weak var hostInfoBG: UILabel!
+    @IBOutlet weak var InfoView: UIView!
+    @IBOutlet weak var chatView: UIView!
     var keyboardHeight: CGFloat = 0
-    let offset = UIScreen.main.bounds.height * 0.065
+    let offset = UIScreen.main.bounds.height * 0.05
     var nickName = NSLocalizedString("VISITOR", comment: "")
     var isAVplayerShouldTurnOff = false
     var messageStore:[message] = []
     var webSocketTask:URLSessionWebSocketTask? = nil
     let inputTextHolder = NSLocalizedString("LET'S PARTY DAY", comment: "")
+    var isChatViewExist = true
+    let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
+    var roomNum = 0
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         if Auth.auth().currentUser != nil {
             self.nickName = Auth.auth().currentUser?.displayName ?? ""
         }
-    
+//        self.animator.isUserInteractionEnabled = false
         self.modalPresentationStyle = .overCurrentContext
         self.inputText.delegate = self
         // 設定UI元件
+        hostInfo.clipsToBounds = true
+        hostInfo.layer.cornerRadius = hostInfo.bounds.width / 2
         LeaveButton.setTitle("", for: .normal)
         self.setImageBG(background:SendBackground)
         self.setImageBG(background:LeaveBackground)
@@ -51,22 +63,26 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
 
         self.OutputText.separatorStyle = .none
        
-        // 註冊監聽鍵盤 frame 改變的事件
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         // 註冊監聽鍵盤出現的事件
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        // 註冊監聽鍵盤消失的事件
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        // 設定websocket連線（URLSessionWebSocketTask ）
-        let websocketURL = self.urlTrans(nickname: nickName)
-        let request = URLRequest(url: websocketURL)
-        webSocketTask = URLSession.shared.webSocketTask(with: request)
-        webSocketTask?.resume()
-        self.receive(webSocketTask: webSocketTask!)
+//         設定websocket連線（URLSessionWebSocketTask ）
+//        let websocketURL = self.urlTrans(nickname: nickName)
+//        let request = URLRequest(url: websocketURL)
+//        webSocketTask = URLSession.shared.webSocketTask(with: request)
+//        webSocketTask?.resume()
+//        self.receive(webSocketTask: webSocketTask!)
         
+        //接收 mediaView 資訊
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        let window = sceneDelegate?.window
+        let mediaView = window?.rootViewController!.presentedViewController! as! MediaAVViewController
+        hostInfoBG.layer.cornerRadius = 20
+        hostInfoNickname.text = mediaView.roomHostNickname
+        hostInfo.image = mediaView.roomHostPhoto
+        hostInfoBtn.setTitle("", for: .normal)
     }
-    
+   
     // 點擊任意處取消編輯
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -116,12 +132,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let tableViewY = self.OutputText.bounds.maxY
         for cell in topCell{
             if cell.center.y >= tableViewY * 0.95{
-                cell.alpha = 0.3
+                cell.alpha = 0.2
             }else if cell.center.y >= tableViewY * 0.9{
-                cell.alpha = 0.6
+                cell.alpha = 0.5
             }
             else if cell.center.y >= tableViewY * 0.85{
-                cell.alpha = 0.9
+                cell.alpha = 0.8
             }else{
                 cell.alpha = 1
             }
@@ -238,7 +254,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-//        print("textViewDidBeginEditing:\(self.keyboardHeight)")
         self.inputTextConstraintY.constant = 0 - self.keyboardHeight + self.offset
         UIView.animate(withDuration: 0.2, delay: 0.01, animations: {
             self.inputText.center =
@@ -255,7 +270,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         if self.inputText.text == self.inputTextHolder {
             self.inputText.text = ""
             }
-//        print("color:\(self.inputText.textColor)")
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         self.inputText.center =
@@ -274,18 +288,81 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-        /// 監聽鍵盤開啟事件(鍵盤切換時總會觸發，不管是不是相同 type 的....例如：預設鍵盤 → 數字鍵盤)
+    // 監聽鍵盤開啟事件(鍵盤切換時總會觸發，不管是不是相同 type 的....例如：預設鍵盤 → 數字鍵盤)
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             self.keyboardHeight = keyboardFrame.cgRectValue.height
         }
     }
-    @objc func keyboardWillChangeFrame(_ notification: Notification) {
-   }
-    /// 監聽鍵盤關閉事件(鍵盤關掉時才會觸發)
-    @objc func keyboardWillHide(_ notification: Notification) {
-    }
     @IBAction func tap(_ sender: Any) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func removeChatFrame(_ sender: UIPanGestureRecognizer) {
+        let width = self.view.frame.width
+        let ratio = abs(sender.translation(in: self.view).x) / width
+        let transX = sender.translation(in: self.view).x
+        switch sender.state {
+        case .changed:
+            if isChatViewExist == true{
+                self.chatView.center.x = self.view.center.x + transX
+                if transX > 0{
+                    self.chatView.alpha = 1 - ratio
+                    self.InfoView.alpha = 1 - ratio
+                }
+            }else if transX < 0{
+                self.chatView.center.x = self.view.center.x + transX + width
+                self.chatView.alpha =  ratio
+                self.InfoView.alpha = ratio
+            }
+        case .ended:
+            let startpoint = self.chatView.center.x
+            var endpoint = self.view.center.x
+            var alpha = CGFloat(1)
+            if ((isChatViewExist == true) && (transX < 0))||((isChatViewExist == false) && (transX > 0))||ratio < 0.7{
+                if isChatViewExist == false{
+                    endpoint += width
+                    alpha = 0
+                }
+                self.moveChatFrame(startpoint: startpoint, endpoint: endpoint,alpha: alpha)
+                animator.startAnimation()
+            }else{
+                if isChatViewExist == true{
+                    endpoint += width
+                    alpha = 0
+                }
+                self.moveChatFrame(startpoint: startpoint, endpoint: endpoint,alpha: alpha)
+                animator.addCompletion { _ in
+                    self.isChatViewExist.toggle()
+                }
+                animator.startAnimation()
+                
+            }
+        default:
+            ()
+        }
+    }
+    func moveChatFrame(startpoint:CGFloat,endpoint:CGFloat,alpha:CGFloat){
+        self.chatView.center.x = startpoint
+        animator.addAnimations {
+            self.chatView.center.x = endpoint
+            self.chatView.alpha = alpha
+            self.InfoView.alpha = alpha
+        }
+        
+    }
+    override func prepare (for segue: UIStoryboardSegue, sender: Any?) {
+        let popoverCtrl = segue.destination.popoverPresentationController
+        
+        if sender is UIButton {
+            popoverCtrl?.sourceRect = (sender as! UIButton).bounds
+        }
+        popoverCtrl?.delegate = self
+    }
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    
+    
 }
