@@ -354,11 +354,40 @@
                                             </segue>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a1U-bp-LFp">
+                                        <rect key="frame" x="16" y="87.5" width="50.5" height="50"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="a1U-bp-LFp" secondAttribute="height" multiplier="25:26" id="phA-cc-jlc"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="R7x-dr-5aD">
+                                        <rect key="frame" x="16" y="87.5" width="50.5" height="50"/>
+                                        <color key="tintColor" systemColor="systemPinkColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="R7x-dr-5aD" secondAttribute="height" multiplier="25:26" id="6Nx-Q5-ImV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x77-Nf-vjc">
+                                        <rect key="frame" x="16.5" y="87" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="x77-Nf-vjc" secondAttribute="height" multiplier="1:1" id="Wdt-AQ-BJR"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="likeEvent:" destination="tfy-iK-Z0O" eventType="touchUpInside" id="qlx-ka-6XG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="vd1-Jo-vQk" firstAttribute="width" secondItem="UoN-S2-AcM" secondAttribute="width" multiplier="1.52308" id="0fd-2l-CQL"/>
+                                    <constraint firstItem="a1U-bp-LFp" firstAttribute="centerY" secondItem="Zno-Os-bis" secondAttribute="centerY" multiplier="0.5" id="2Bd-bM-c9g"/>
                                     <constraint firstItem="WLC-b1-8JC" firstAttribute="centerX" secondItem="413-f8-WjU" secondAttribute="centerX" multiplier="1.3" id="6MO-iN-tjF"/>
+                                    <constraint firstItem="x77-Nf-vjc" firstAttribute="centerY" secondItem="a1U-bp-LFp" secondAttribute="centerY" id="8hf-De-dha"/>
+                                    <constraint firstItem="R7x-dr-5aD" firstAttribute="centerY" secondItem="a1U-bp-LFp" secondAttribute="centerY" id="95b-dz-xNM"/>
+                                    <constraint firstItem="R7x-dr-5aD" firstAttribute="width" secondItem="a1U-bp-LFp" secondAttribute="width" id="BVo-Sv-mDL"/>
                                     <constraint firstItem="WLC-b1-8JC" firstAttribute="width" secondItem="413-f8-WjU" secondAttribute="width" multiplier="0.600619" id="Bqy-iH-Obh"/>
                                     <constraint firstItem="UoN-S2-AcM" firstAttribute="centerY" secondItem="S44-t6-nhj" secondAttribute="centerY" id="Bug-t7-24n"/>
                                     <constraint firstItem="413-f8-WjU" firstAttribute="centerX" secondItem="Zno-Os-bis" secondAttribute="centerX" multiplier="0.46" id="C37-F1-444"/>
@@ -366,18 +395,23 @@
                                     <constraint firstItem="vd1-Jo-vQk" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="FS6-E2-NTV"/>
                                     <constraint firstItem="S44-t6-nhj" firstAttribute="width" secondItem="Zno-Os-bis" secondAttribute="width" multiplier="0.119565" id="GpM-Cl-oaO"/>
                                     <constraint firstItem="9FN-YK-1Bh" firstAttribute="centerY" secondItem="413-f8-WjU" secondAttribute="centerY" id="H87-C2-BpT"/>
+                                    <constraint firstItem="a1U-bp-LFp" firstAttribute="height" secondItem="Zno-Os-bis" secondAttribute="height" multiplier="0.117188" id="Iue-Jp-8F5"/>
                                     <constraint firstItem="WLC-b1-8JC" firstAttribute="height" secondItem="413-f8-WjU" secondAttribute="height" multiplier="0.325581" id="Nlw-FF-DVy"/>
                                     <constraint firstItem="S44-t6-nhj" firstAttribute="centerX" secondItem="Zno-Os-bis" secondAttribute="centerX" multiplier="1.8" id="PTQ-tY-ms8"/>
+                                    <constraint firstItem="a1U-bp-LFp" firstAttribute="centerX" secondItem="Zno-Os-bis" secondAttribute="centerX" multiplier="0.2" id="Pbn-Rm-KJc"/>
+                                    <constraint firstItem="x77-Nf-vjc" firstAttribute="centerX" secondItem="a1U-bp-LFp" secondAttribute="centerX" id="PmD-N1-piu"/>
                                     <constraint firstItem="9FN-YK-1Bh" firstAttribute="width" secondItem="413-f8-WjU" secondAttribute="width" id="Rav-Ww-Yx2"/>
                                     <constraint firstItem="PqC-7t-fkq" firstAttribute="centerY" secondItem="413-f8-WjU" secondAttribute="centerY" id="Tzv-qo-Swc"/>
                                     <constraint firstItem="UoN-S2-AcM" firstAttribute="width" secondItem="S44-t6-nhj" secondAttribute="width" multiplier="0.656566" id="b87-WJ-u4o"/>
                                     <constraint firstItem="S44-t6-nhj" firstAttribute="centerY" secondItem="Zno-Os-bis" secondAttribute="centerY" multiplier="0.3" id="cYz-Ru-1jA"/>
+                                    <constraint firstItem="x77-Nf-vjc" firstAttribute="width" secondItem="a1U-bp-LFp" secondAttribute="width" multiplier="0.990099" id="daX-ui-wWL"/>
                                     <constraint firstItem="UoN-S2-AcM" firstAttribute="centerX" secondItem="S44-t6-nhj" secondAttribute="centerX" id="dxM-Rd-pJt"/>
                                     <constraint firstItem="WLC-b1-8JC" firstAttribute="centerY" secondItem="413-f8-WjU" secondAttribute="centerY" id="kOA-Am-vXD"/>
                                     <constraint firstItem="413-f8-WjU" firstAttribute="width" secondItem="Zno-Os-bis" secondAttribute="width" multiplier="0.390097" id="lya-ZS-xGs"/>
                                     <constraint firstItem="9FN-YK-1Bh" firstAttribute="centerX" secondItem="413-f8-WjU" secondAttribute="centerX" id="ngP-5b-ret"/>
                                     <constraint firstItem="413-f8-WjU" firstAttribute="centerY" secondItem="Zno-Os-bis" secondAttribute="centerY" multiplier="0.2" id="r63-v1-2OU"/>
                                     <constraint firstItem="PqC-7t-fkq" firstAttribute="centerX" secondItem="413-f8-WjU" secondAttribute="centerX" multiplier="0.46" id="tg3-VE-dmk"/>
+                                    <constraint firstItem="R7x-dr-5aD" firstAttribute="centerX" secondItem="a1U-bp-LFp" secondAttribute="centerX" id="ugX-SG-ZMb"/>
                                     <constraint firstItem="PqC-7t-fkq" firstAttribute="width" secondItem="413-f8-WjU" secondAttribute="width" multiplier="0.331269" id="vZJ-3Y-BP4"/>
                                     <constraint firstItem="413-f8-WjU" firstAttribute="height" secondItem="Zno-Os-bis" secondAttribute="height" multiplier="0.143973" id="zaF-IP-ZHM"/>
                                     <constraint firstItem="vd1-Jo-vQk" firstAttribute="centerY" secondItem="S44-t6-nhj" secondAttribute="centerY" id="zg9-GD-caq"/>
@@ -402,6 +436,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="HeartBtn" destination="x77-Nf-vjc" id="tNv-x6-n8c"/>
                         <outlet property="InfoView" destination="Zno-Os-bis" id="Aaj-76-Ras"/>
                         <outlet property="InputText" destination="3cY-sA-pBc" id="zPD-Ly-hJF"/>
                         <outlet property="Leave" destination="UoN-S2-AcM" id="3uQ-aH-tdl"/>
@@ -412,6 +447,8 @@
                         <outlet property="SendBackground" destination="nLS-nG-R2i" id="RX6-Y2-CbR"/>
                         <outlet property="SendButton" destination="gnX-bK-WKA" id="6SO-iE-IHy"/>
                         <outlet property="chatView" destination="6uJ-YQ-Tog" id="E6f-xq-lu3"/>
+                        <outlet property="heart" destination="a1U-bp-LFp" id="5x6-sl-Rlu"/>
+                        <outlet property="heartFill" destination="R7x-dr-5aD" id="Aqo-ed-owf"/>
                         <outlet property="hostInfo" destination="PqC-7t-fkq" id="dr2-9F-5vX"/>
                         <outlet property="hostInfoBG" destination="413-f8-WjU" id="gTf-nA-flu"/>
                         <outlet property="hostInfoBtn" destination="9FN-YK-1Bh" id="yql-Vv-fSJ"/>
@@ -457,15 +494,25 @@
                                     <constraint firstAttribute="width" secondItem="wc8-EK-4Bj" secondAttribute="height" multiplier="1:1" id="vPi-Az-4n0"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-Rh-DZ0">
+                                <rect key="frame" x="152" y="92.5" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w5y-Ct-e07"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iCd-Ip-Z1C" firstAttribute="centerX" secondItem="w5y-Ct-e07" secondAttribute="centerX" id="AGC-f4-6LO"/>
+                            <constraint firstItem="6pd-Rh-DZ0" firstAttribute="width" secondItem="wc8-EK-4Bj" secondAttribute="width" multiplier="0.899225" id="Gxn-KD-CQd"/>
                             <constraint firstItem="wc8-EK-4Bj" firstAttribute="centerY" secondItem="w5y-Ct-e07" secondAttribute="centerY" id="I3V-Xw-lLV"/>
+                            <constraint firstItem="6pd-Rh-DZ0" firstAttribute="centerY" secondItem="wc8-EK-4Bj" secondAttribute="centerY" multiplier="0.7" id="Yqb-1C-LQW"/>
+                            <constraint firstItem="6pd-Rh-DZ0" firstAttribute="height" secondItem="wc8-EK-4Bj" secondAttribute="height" multiplier="0.162791" id="a8W-vZ-14h"/>
                             <constraint firstItem="wc8-EK-4Bj" firstAttribute="width" secondItem="IZO-8a-wTD" secondAttribute="width" multiplier="0.46" id="cPJ-f4-zVd"/>
                             <constraint firstItem="iCd-Ip-Z1C" firstAttribute="height" secondItem="w5y-Ct-e07" secondAttribute="height" id="fGl-Qw-FIT"/>
+                            <constraint firstItem="6pd-Rh-DZ0" firstAttribute="centerX" secondItem="wc8-EK-4Bj" secondAttribute="centerX" multiplier="3" id="huO-Jv-eZC"/>
                             <constraint firstItem="iCd-Ip-Z1C" firstAttribute="width" secondItem="w5y-Ct-e07" secondAttribute="width" id="izd-OV-zma"/>
                             <constraint firstItem="iCd-Ip-Z1C" firstAttribute="centerY" secondItem="w5y-Ct-e07" secondAttribute="centerY" id="kxa-J8-5e7"/>
                             <constraint firstItem="wc8-EK-4Bj" firstAttribute="centerX" secondItem="w5y-Ct-e07" secondAttribute="centerX" multiplier="0.5" id="tU2-PC-gKh"/>
@@ -474,6 +521,8 @@
                     <value key="contentSizeForViewInPopover" type="size" width="280" height="200"/>
                     <size key="freeformSize" width="280" height="250"/>
                     <connections>
+                        <outlet property="HostImage" destination="wc8-EK-4Bj" id="XpC-xc-HGp"/>
+                        <outlet property="HostNickname" destination="6pd-Rh-DZ0" id="OJo-dl-A9Q"/>
                         <outlet property="hostInfoBG" destination="iCd-Ip-Z1C" id="jej-0u-JT7"/>
                     </connections>
                 </viewController>
@@ -1397,6 +1446,8 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="eye.slash" catalog="system" width="128" height="86"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logout" width="23" height="19"/>

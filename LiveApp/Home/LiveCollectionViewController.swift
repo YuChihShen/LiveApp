@@ -65,6 +65,7 @@ class LiveCollectionViewController: UICollectionViewController {
         cell.peoPlecount = roomResult?.stream_list[indexPath.item].online_num ?? 0
         cell.urlString = roomResult?.stream_list[indexPath.item].head_photo ?? ""
         cell.tagsText = roomResult?.stream_list[indexPath.item].tags ?? ""
+        cell.streamer_id = (roomResult?.stream_list[indexPath.item].streamer_id)!
         cell.createTags()
         cell.update()
         
@@ -82,7 +83,7 @@ class LiveCollectionViewController: UICollectionViewController {
         let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))! as! MediaAVViewController
         mediaView.roomHostNickname = cell.NickName!.text!
         mediaView.roomHostPhoto = image!
-        
+        mediaView.streamer_id = cell.streamer_id
         present(mediaView, animated: false)
     }
     

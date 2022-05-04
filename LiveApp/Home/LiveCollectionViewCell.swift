@@ -15,6 +15,7 @@ class LiveCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var NickName: UILabel!
     
     @IBOutlet weak var RoomName: UILabel!
+    var streamer_id = 0
     var peoPlecount = 0
     var urlString = ""
     var tagsText = ""

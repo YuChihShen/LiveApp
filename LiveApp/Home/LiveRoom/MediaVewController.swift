@@ -17,6 +17,8 @@ class MediaAVViewController: AVPlayerViewController, UIGestureRecognizerDelegate
     
     var roomHostPhoto = UIImage(named: "")
     var roomHostNickname = ""
+    var streamer_id = 0
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
            return .portrait
        }

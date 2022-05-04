@@ -11,7 +11,9 @@ import FirebaseAuth
 class NavigationController: UINavigationController {
 
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        viewDidLoad()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         if Auth.auth().currentUser != nil {

@@ -18,6 +18,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
     var urlString = ""
     var tagsText = ""
     var task:URLSessionTask?
+    var streamer_id = 0
     
     override func prepareForReuse() {
         task?.cancel()

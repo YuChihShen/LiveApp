@@ -13,6 +13,9 @@ import RxSwift
 
 class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate ,UIPopoverPresentationControllerDelegate{
     
+    @IBOutlet weak var HeartBtn: UIButton!
+    @IBOutlet weak var heartFill: UIImageView!
+    @IBOutlet weak var heart: UIImageView!
     @IBOutlet weak var LeaveButton: UIButton!
     @IBOutlet weak var Leave: UIImageView!
     @IBOutlet weak var LeaveBackground: UILabel!
@@ -29,6 +32,9 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var hostInfoBG: UILabel!
     @IBOutlet weak var InfoView: UIView!
     @IBOutlet weak var chatView: UIView!
+    let firebaseSupport = FireBaseSupport()
+    var isLiked = false
+    var streamer_id = ""
     var keyboardHeight: CGFloat = 0
     let offset = UIScreen.main.bounds.height * 0.05
     var nickName = NSLocalizedString("VISITOR", comment: "")
@@ -39,19 +45,20 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var isChatViewExist = true
     let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
     var roomNum = 0
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         if Auth.auth().currentUser != nil {
             self.nickName = Auth.auth().currentUser?.displayName ?? ""
         }
-//        self.animator.isUserInteractionEnabled = false
         self.modalPresentationStyle = .overCurrentContext
         self.inputText.delegate = self
         // 設定UI元件
         hostInfo.clipsToBounds = true
         hostInfo.layer.cornerRadius = hostInfo.bounds.width / 2
         LeaveButton.setTitle("", for: .normal)
+        HeartBtn.setTitle("", for: .normal)
         self.setImageBG(background:SendBackground)
         self.setImageBG(background:LeaveBackground)
         self.SendButton.setTitle("", for: .normal)
@@ -66,17 +73,21 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         // 註冊監聽鍵盤出現的事件
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-//         設定websocket連線（URLSessionWebSocketTask ）
-//        let websocketURL = self.urlTrans(nickname: nickName)
-//        let request = URLRequest(url: websocketURL)
-//        webSocketTask = URLSession.shared.webSocketTask(with: request)
-//        webSocketTask?.resume()
-//        self.receive(webSocketTask: webSocketTask!)
+        //設定websocket連線（URLSessionWebSocketTask ）
+        let websocketURL = self.urlTrans(nickname: nickName)
+        let request = URLRequest(url: websocketURL)
+        webSocketTask = URLSession.shared.webSocketTask(with: request)
+        webSocketTask?.resume()
+        self.receive(webSocketTask: webSocketTask!)
         
         //接收 mediaView 資訊
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         let window = sceneDelegate?.window
         let mediaView = window?.rootViewController!.presentedViewController! as! MediaAVViewController
+        streamer_id = String(mediaView.streamer_id )
+        heart.isHidden = true
+        heartFill.isHidden = true
+        self.firebaseSupport.isDataExist(streamer_id:streamer_id,vc: self)
         hostInfoBG.layer.cornerRadius = 20
         hostInfoNickname.text = mediaView.roomHostNickname
         hostInfo.image = mediaView.roomHostPhoto
@@ -307,8 +318,8 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             if isChatViewExist == true{
                 self.chatView.center.x = self.view.center.x + transX
                 if transX > 0{
-                    self.chatView.alpha = 1 - ratio
-                    self.InfoView.alpha = 1 - ratio
+                    self.chatView.alpha = 1 - pow(ratio, 2)
+                    self.InfoView.alpha = 1 - pow(ratio, 2)
                 }
             }else if transX < 0{
                 self.chatView.center.x = self.view.center.x + transX + width
@@ -319,7 +330,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             let startpoint = self.chatView.center.x
             var endpoint = self.view.center.x
             var alpha = CGFloat(1)
-            if ((isChatViewExist == true) && (transX < 0))||((isChatViewExist == false) && (transX > 0))||ratio < 0.7{
+            if ((isChatViewExist == true) && (transX < 0))||((isChatViewExist == false) && (transX > 0))||ratio < 0.6{
                 if isChatViewExist == false{
                     endpoint += width
                     alpha = 0
@@ -362,7 +373,88 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
+    // 追蹤功能
+    @IBAction func likeEvent(_ sender: Any) {
+        // 判斷有無登入
+        let isUserExist = self.firebaseSupport.isUserExist()
+        if isUserExist{
+            // 儲存<->刪除 streamer_id
+            switch isLiked{
+            case true:
+                self.firebaseSupport.deleteData(streamer_id: streamer_id)
+            case false:
+                self.firebaseSupport.addData(streamer_id: streamer_id)
+            }
+            // 切換圖案
+            heart.isHidden.toggle()
+            heartFill.isHidden.toggle()
+            isLiked.toggle()
+            // 播放動畫
+            if isLiked == true{
+                self.likeAnimate()
+            }
 
+        }else{
+            // 登入提示 ＆ 跳轉畫面
+            let alertController = UIAlertController(
+                    title: "尚未登入",
+                    message: "要前往登入頁面嗎？",
+                    preferredStyle: .alert)
+            let cancelAction = UIAlertAction(
+                 title: "取消",
+                 style: .cancel,
+                 handler: nil)
+               alertController.addAction(cancelAction)
+            let signIn = UIAlertAction(
+                 title: "登入",
+                 style: .default){_ in 
+                     let signInOPage = self.storyboard?.instantiateViewController(withIdentifier: "LogInView") as! LogInViewController
+                     signInOPage.isChatRoomPresent = true
+                     self.present(signInOPage, animated: true)
+                 }
+               alertController.addAction(signIn)
+            self.present(
+                  alertController,
+                  animated: true,
+                  completion: nil)
+            
+        }
+        
+    }
+    func likeAnimate(){
+        let emitterCell = CAEmitterCell()
+        let image = UIImage(named: "heart")
+        emitterCell.contents = image?.cgImage
+        
+        emitterCell.birthRate = 24
+        emitterCell.lifetime = 4
+        emitterCell.lifetimeRange = 1.0
+        
+        emitterCell.yAcceleration = -150.0
+        emitterCell.xAcceleration = 5.0
+        emitterCell.velocity = -70.0
+        emitterCell.velocityRange = 20.0
+        
+        emitterCell.scale = 0.05
+        emitterCell.scaleRange = 0.02
+        emitterCell.scaleSpeed = -0.01
+        emitterCell.alphaRange = 0.3
+        emitterCell.alphaSpeed = -0.2
+        emitterCell.emissionRange = CGFloat.pi
+        
+        // init emitter
+        let emitter = CAEmitterLayer()
+        emitter.emitterCells = [emitterCell]
+        // appear way
+        emitter.emitterShape = .sphere
+        emitter.emitterPosition = CGPoint(x: view.bounds.width/2, y: view.bounds.height * 1.5)
+        emitter.emitterSize = CGSize(width:  view.bounds.width, height: view.bounds.height )
+        
+        view.layer.addSublayer(emitter)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.8){
+            emitter.removeFromSuperlayer()
+        }
+    }
     
     
 }

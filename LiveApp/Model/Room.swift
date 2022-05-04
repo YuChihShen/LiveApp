@@ -14,6 +14,7 @@ import UIKit
         let online_num:Int
         let stream_title:String
         let tags:String
+        let streamer_id:Int
     }
     struct Rooms:Codable{
         let lightyear_list:[Room]

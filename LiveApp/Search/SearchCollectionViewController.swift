@@ -77,6 +77,7 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
             cell.peoPlecount = searchRoom[indexPath.item].online_num
             cell.urlString = searchRoom[indexPath.item].head_photo
             cell.tagsText = searchRoom[indexPath.item].tags
+            cell.streamer_id = searchRoom[indexPath.item].streamer_id
             cell.createTags()
         case 2:
             cell.RoomName.text = String(roomResult?.lightyear_list[indexPath.item].stream_title ?? "")
@@ -84,6 +85,7 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
             cell.peoPlecount = roomResult?.lightyear_list[indexPath.item].online_num ?? 0
             cell.urlString = roomResult?.lightyear_list[indexPath.item].head_photo ?? ""
             cell.tagsText = roomResult?.lightyear_list[indexPath.item].tags ?? ""
+            cell.streamer_id = (roomResult?.lightyear_list[indexPath.item].streamer_id)!
             cell.createTags()
         default:
             break
@@ -98,7 +100,11 @@ class SearchCollectionViewController: UICollectionViewController,UISearchBarDele
     }
     // Cell 被選中的事件
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))!
+        let cell = collectionView.cellForItem(at: indexPath) as! SearchCollectionViewCell
+        let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))! as! MediaAVViewController
+        mediaView.roomHostPhoto = cell.LiveView.image!
+        mediaView.roomHostNickname = cell.NickName!.text!
+        mediaView.streamer_id = cell.streamer_id
         present(mediaView, animated: false)
     }
 

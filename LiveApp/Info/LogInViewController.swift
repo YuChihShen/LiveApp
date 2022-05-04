@@ -36,13 +36,20 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     var accountValid = false
     var passwordValid = false
     var memoColor = false
-    
+    var isChatRoomPresent = false
     @IBAction func LogIn(_ sender: Any) {
         let accountEmail = ("\(self.AccountText.text!)@user.com")
         Auth.auth().signIn(withEmail: accountEmail, password: PasswordText.text ?? ""){(user,error) in
             if error == nil{
                 self.tabBarController?.selectedIndex = 0
                 self.navigationController?.viewDidLoad()
+                if self.isChatRoomPresent == true{
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    let window = sceneDelegate?.window
+                    let ChatRoom = window?.rootViewController!.presentedViewController!.presentedViewController! as! ChatRoomViewController
+                    ChatRoom.viewDidLoad()
+                }
+                self.dismiss(animated: true)
                 print(self.memoColor)
                 if self.memoColor == true {
                     self.userdefault.set("\(self.AccountText.text!)", forKey: "account")
@@ -180,7 +187,6 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         
         if accountValid && passwordValid {
             self.LogInButton.isEnabled = true
-//            self.LogInButton.layer.backgroundColor = UIColor.black.cgColor
         }else{
             self.LogInButton.isEnabled = false
         }
