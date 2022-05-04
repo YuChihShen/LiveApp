@@ -122,7 +122,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatOuputTableViewCell
         // 設置對話框
         cell.stackView.clipsToBounds = true
-        cell.stackView.layer.cornerRadius = 5
+        cell.stackView.layer.cornerRadius = 13
         // 設置對話顯示順序
         self.OutputText.transform = CGAffineTransform(scaleX: 1, y: -1)
         cell.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -142,12 +142,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let topCell = self.OutputText.visibleCells
         let tableViewY = self.OutputText.bounds.maxY
         for cell in topCell{
-            if cell.center.y >= tableViewY * 0.95{
+            if cell.center.y >= tableViewY * 0.96{
                 cell.alpha = 0.2
-            }else if cell.center.y >= tableViewY * 0.9{
+            }else if cell.center.y >= tableViewY * 0.92{
                 cell.alpha = 0.5
             }
-            else if cell.center.y >= tableViewY * 0.85{
+            else if cell.center.y >= tableViewY * 0.88{
                 cell.alpha = 0.8
             }else{
                 cell.alpha = 1
