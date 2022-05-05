@@ -74,11 +74,11 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         //設定websocket連線（URLSessionWebSocketTask ）
-        let websocketURL = self.urlTrans(nickname: nickName)
-        let request = URLRequest(url: websocketURL)
-        webSocketTask = URLSession.shared.webSocketTask(with: request)
-        webSocketTask?.resume()
-        self.receive(webSocketTask: webSocketTask!)
+//        let websocketURL = self.urlTrans(nickname: nickName)
+//        let request = URLRequest(url: websocketURL)
+//        webSocketTask = URLSession.shared.webSocketTask(with: request)
+//        webSocketTask?.resume()
+//        self.receive(webSocketTask: webSocketTask!)
         
         //接收 mediaView 資訊
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
@@ -397,16 +397,16 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             // 登入提示 ＆ 跳轉畫面
             let alertController = UIAlertController(
-                    title: "尚未登入",
-                    message: "要前往登入頁面嗎？",
+                    title: NSLocalizedString("NO SIGNIN", comment: ""),
+                    message: NSLocalizedString("PRESENT TO SIGNIN PAGE", comment: ""),
                     preferredStyle: .alert)
             let cancelAction = UIAlertAction(
-                 title: "取消",
+                 title: NSLocalizedString("CANCEL", comment: ""),
                  style: .cancel,
                  handler: nil)
                alertController.addAction(cancelAction)
             let signIn = UIAlertAction(
-                 title: "登入",
+                 title: NSLocalizedString("SIGNIN", comment: ""),
                  style: .default){_ in 
                      let signInOPage = self.storyboard?.instantiateViewController(withIdentifier: "LogInView") as! LogInViewController
                      signInOPage.isChatRoomPresent = true

@@ -38,7 +38,9 @@ class MediaAVViewController: AVPlayerViewController, UIGestureRecognizerDelegate
     }
     // ViewDidAppear
     override func viewDidAppear(_ animated: Bool) {
+        
         self.transChatRoom()
+        
     }
     func transChatRoom(){
         let chatRoom = self.storyboard?.instantiateViewController(withIdentifier: "ChatRoom") as! ChatRoomViewController

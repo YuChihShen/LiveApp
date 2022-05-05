@@ -81,10 +81,15 @@ class LiveCollectionViewController: UICollectionViewController {
         let cell = collectionView.cellForItem(at: indexPath) as! LiveCollectionViewCell
         let image = cell.LiveView.image
         let mediaView =  (self.storyboard?.instantiateViewController(withIdentifier: "MediaView"))! as! MediaAVViewController
+
         mediaView.roomHostNickname = cell.NickName!.text!
         mediaView.roomHostPhoto = image!
         mediaView.streamer_id = cell.streamer_id
         present(mediaView, animated: false)
+//        let tableview = self.storyboard?.instantiateViewController(withIdentifier: "RoomTable") as! TableViewController
+//        tableview.tableCells = roomResult?.stream_list.count ?? 0
+//        present(tableview, animated: false)
+        
     }
     
 }
