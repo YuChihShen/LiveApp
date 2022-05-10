@@ -27,6 +27,8 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var inputTextConstraintY: NSLayoutConstraint!
     @IBOutlet weak var hostInfo: UIImageView!
     
+    @IBOutlet weak var listBtn: UIButton!
+    @IBOutlet weak var listLabel: UILabel!
     @IBOutlet weak var hostInfoBtn: UIButton!
     @IBOutlet weak var hostInfoNickname: UILabel!
     @IBOutlet weak var hostInfoBG: UILabel!
@@ -45,6 +47,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     var isChatViewExist = true
     let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
     var roomNum = 0
+    var likeList:[String] = []
     
     override func viewDidLoad() {
         
@@ -55,6 +58,9 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         self.modalPresentationStyle = .overCurrentContext
         self.inputText.delegate = self
         // 設定UI元件
+        listBtn.setTitle("", for: .normal)
+        listLabel.clipsToBounds = true
+        listLabel.layer.cornerRadius = 10
         hostInfo.clipsToBounds = true
         hostInfo.layer.cornerRadius = hostInfo.bounds.width / 2
         LeaveButton.setTitle("", for: .normal)
@@ -73,12 +79,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         // 註冊監聽鍵盤出現的事件
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-        //設定websocket連線（URLSessionWebSocketTask ）
-//        let websocketURL = self.urlTrans(nickname: nickName)
-//        let request = URLRequest(url: websocketURL)
-//        webSocketTask = URLSession.shared.webSocketTask(with: request)
-//        webSocketTask?.resume()
-//        self.receive(webSocketTask: webSocketTask!)
+//        設定websocket連線（URLSessionWebSocketTask ）
+        let websocketURL = self.urlTrans(nickname: nickName)
+        let request = URLRequest(url: websocketURL)
+        webSocketTask = URLSession.shared.webSocketTask(with: request)
+        webSocketTask?.resume()
+        self.receive(webSocketTask: webSocketTask!)
         
         //接收 mediaView 資訊
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
@@ -92,6 +98,14 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         hostInfoNickname.text = mediaView.roomHostNickname
         hostInfo.image = mediaView.roomHostPhoto
         hostInfoBtn.setTitle("", for: .normal)
+        
+        reloadLikeList()
+    }
+    //搜尋 like list 資訊
+    func reloadLikeList(){
+        if firebaseSupport.isUserExist(){
+            self.firebaseSupport.getData(vc:self)
+        }
     }
    
     // 點擊任意處取消編輯
@@ -204,7 +218,10 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             case .success(let message):
                 switch message {
                 case .string(let text):
-                    self.messageStore.insert(self.decode(text: text), at: 0)
+                    let message = self.decode(text: text)
+                    if message.contentText != "" || message.userText != ""{
+                        self.messageStore.insert(message, at: 0)
+                    }
                 case .data(let data):
                     print("websocket Received Data: \(data)")
                 @unknown default:
@@ -259,7 +276,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             messsageText.userText = ""
             messsageText.contentText = notification?.body?.text ?? ""
             default:
-                print("text")
+                print("default:\(text)")
         }
         return messsageText
     }
@@ -389,6 +406,7 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             heart.isHidden.toggle()
             heartFill.isHidden.toggle()
             isLiked.toggle()
+            reloadLikeList()
             // 播放動畫
             if isLiked == true{
                 self.likeAnimate()
@@ -455,6 +473,5 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             emitter.removeFromSuperlayer()
         }
     }
-    
     
 }

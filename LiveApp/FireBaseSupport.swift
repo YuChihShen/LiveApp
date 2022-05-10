@@ -60,7 +60,6 @@ class FireBaseSupport{
         let ref = db.collection("\(Auth.auth().currentUser?.email ?? "default")").document("\(streamer_id)")
         ref.getDocument { (document, error) in
             if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 vc.isLiked = true
                 vc.heart.isHidden = true
                 vc.heartFill.isHidden = false
@@ -75,6 +74,20 @@ class FireBaseSupport{
     func deleteData(streamer_id:String){
         let ref = db.collection("\(Auth.auth().currentUser?.email ?? "")")
         ref.document("\(streamer_id)").delete()
+    }
+    func getData(vc:ChatRoomViewController) {
+        vc.likeList = []
+        let ref = db.collection("\(Auth.auth().currentUser?.email ?? "")")
+        ref.getDocuments(){ (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    vc.likeList.append(document.documentID)
+                }
+            }
+        }
+            
     }
         
 }
