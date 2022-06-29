@@ -83,8 +83,8 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         let websocketURL = self.urlTrans(nickname: nickName)
         let request = URLRequest(url: websocketURL)
         webSocketTask = URLSession.shared.webSocketTask(with: request)
-        webSocketTask?.resume()
-        self.receive(webSocketTask: webSocketTask!)
+//        webSocketTask?.resume()
+//        self.receive(webSocketTask: webSocketTask!)
         
         //接收 mediaView 資訊
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
